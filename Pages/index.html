@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate Home</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo"></div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button>🔍</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="active">Buy</button>
+        <button>Rent</button>
+        <button>Favorites</button>
+      </div>
+      <div class="account">
+        <div class="avatar"></div>
+        <span>Account</span>
+      </div>
+    </header>
+
+    <!-- Filter Section -->
+    <section class="filters">
+      <button>Location ⌄</button>
+      <button>Price Range ⌄</button>
+      <button>Terrain Size ⌄</button>
+      <button>Year Range ⌄</button>
+      <button>Room Count ⌄</button>
+    </section>
+
+    <!-- Property Grid -->
+    <section class="property-grid">
+      <!-- Property Card -->
+      <div class="property-card">
+        <img src="house.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <p class="price">Price</p>
+          <span class="bookmark">🔖</span>
+        </div>
+      </div>
+
+      <!-- Repeat the card as needed -->
+      <div class="property-card">
+        <img src="house.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <p class="price">Price</p>
+          <span class="bookmark">🔖</span>
+        </div>
+      </div>
+
+      <!-- Add more cards -->
+    </section>
+  </body>
 </html>
