@@ -15,26 +15,41 @@
     <header class="navbar">
       <div class="logo"></div>
       <div class="search-bar">
-        <input type="text" placeholder="Search..." />
-        <button>🔍</button>
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button onclick="handleSearch()">🔍</button>
       </div>
       <div class="nav-buttons">
-        <button class="active">Buy</button>
-        <button>Rent</button>
-        <button>Favorites</button>
+        <button onclick="setMode('buy')" id="btn-buy" class="active">
+          Buy
+        </button>
+
+        <button onclick="setMode('rent')" id="btn-rent">Rent</button>
+
+        <button onclick="setMode('favorites')" id="btn-fav">Favorites</button>
       </div>
-      <div class="account">
-        <div class="avatar"></div>
+      <div class="account" id="accountButton">
+        <div class="avatar-small"></div>
         <span>Account</span>
       </div>
     </header>
 
     <!-- Filter Section -->
     <section class="filters">
-      <button>Location ⌄</button>
+      <div class="locationDropdown Filter">
+        <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
+
+        <div class="dropdown" id="locationDropdown">
+          <p onclick="applyFilter('New York')">New York</p>
+          <p onclick="applyFilter('California')">California</p>
+        </div>
+      </div>
+
       <button>Price Range ⌄</button>
+
       <button>Terrain Size ⌄</button>
+
       <button>Year Range ⌄</button>
+
       <button>Room Count ⌄</button>
     </section>
 
@@ -47,7 +62,7 @@
           <h3>HOUSE</h3>
           <p>📍 Location</p>
           <p class="price">Price</p>
-          <span class="bookmark">🔖</span>
+          <span class="bookmark" onclick="toggleBookmark(this)">🔖</span>
         </div>
       </div>
 
@@ -64,5 +79,6 @@
 
       <!-- Add more cards -->
     </section>
+    <script type="module" src="main.js"></script>
   </body>
 </html>

@@ -1,0 +1,39 @@
+/* ========== FILTER BUTTONS ========== */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 0;
+  }
+  
+  .filters button {
+    background: #0096e5;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .filters button:hover {
+    background: #007bbf;
+  }
+  
+  /* ========== PROPERTY GRID (already in your CSS, shown here for context) ========== */
+  /* .property-grid { … } */
+  /* .property-card { … } */
+  /* .property-overlay { … } */
+  
+  /*  Ensure the grid sits nicely under the filters */
+  .property-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
