@@ -9,60 +9,109 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
   </head>
   <body>
     <!-- Navbar -->
     <header class="navbar">
       <div class="logo"></div>
       <div class="search-bar">
-        <input type="text" placeholder="Search..." />
-        <button>🔍</button>
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchButton">🔍</button>
       </div>
       <div class="nav-buttons">
-        <button class="active">Buy</button>
-        <button>Rent</button>
-        <button>Favorites</button>
+        <button  class="tab active">Buy</button>
+        <button class="tab">Rent</button>
+        <button class="tab" >Favorites</button>
       </div>
       <div class="account">
         <div class="avatar"></div>
         <span>Account</span>
       </div>
     </header>
-
+    
     <!-- Filter Section -->
     <section class="filters">
-      <button>Location ⌄</button>
-      <button>Price Range ⌄</button>
-      <button>Terrain Size ⌄</button>
-      <button>Year Range ⌄</button>
-      <button>Room Count ⌄</button>
+      <button class="Location">Location ⌄</button>
+      <button class="PriceRange">Price Range ⌄</button>
+      <button class="TerrainSize">Terrain Size ⌄</button>
+      <button class="YearRange">Year Range ⌄</button>
+      <button class="RoomCount">Room Count ⌄</button>
     </section>
-
+    
     <!-- Property Grid -->
     <section class="property-grid">
       <!-- Property Card -->
       <div class="property-card">
-        <img src="house.jpg" alt="House" />
+        <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
           <h3>HOUSE</h3>
           <p>📍 Location</p>
+          <div class="divider"></div>
           <p class="price">Price</p>
-          <span class="bookmark">🔖</span>
+          <span class="bookmark">❤️</span>
         </div>
       </div>
-
+      
       <!-- Repeat the card as needed -->
       <div class="property-card">
-        <img src="house.jpg" alt="House" />
+        <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
           <h3>HOUSE</h3>
           <p>📍 Location</p>
+          <div class="divider"></div>
           <p class="price">Price</p>
-          <span class="bookmark">🔖</span>
+          <span class="bookmark">❤️</span>
         </div>
       </div>
-
+      
       <!-- Add more cards -->
+      
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+      
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+      
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+      
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
     </section>
+    <script type="module" src="../JS/Ui.js"></script>
   </body>
-</html>
+  </html>
+  
