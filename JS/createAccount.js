@@ -3,11 +3,11 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const username = document.getElementById("username").value;
+    const username = document.getElementById("newUsername").value;
     const userType = document.querySelector("input[name='userType']:checked").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const errorMsg = document.getElementById("passwordError");
+    const password = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmNewPassword").value;
+    const errorMsg = document.getElementById("message");
 
     if (password !== confirmPassword) {
       errorMsg.style.display = "block";
@@ -16,10 +16,13 @@ document
       errorMsg.style.display = "none";
     }
 
-    fetch("https://your-api.com/api/users", {
+    fetch("http://localhost:5139/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, userType, password }),
+      body: JSON.stringify({ 
+        Username: username, 
+        Role: userType, 
+        Password: password }),
     })
       .then((res) => res.json())
       .then((data) => {
