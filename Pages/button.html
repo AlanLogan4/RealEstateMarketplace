@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tab Switcher</title>
+    <style>
+      body {
+        background-color: #264de4;
+        font-family: Arial, sans-serif;
+      }
+
+      .tab-container {
+        display: flex;
+        background: #2b9cd6;
+        border-radius: 25px;
+        width: 300px; /* Optional fixed width */
+        padding: 5px;
+        margin: 50px auto;
+        position: relative;
+        justify-content: space-between;
+      }
+
+      .tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 25px;
+        border-radius: 20px;
+        color: #222;
+        font-weight: 600;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+      }
+
+      .tab.active {
+        color: #1d4ed8;
+      }
+
+      .tab-bg {
+        position: absolute;
+        height: 100%;
+        width: 33.33%;
+        background: white;
+        border-radius: 20px;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        transition: left 0.3s ease;
+      }
+
+      .tab-container[data-active="rent"] .tab-bg {
+        left: 33.33%;
+      }
+
+      .tab-container[data-active="favorites"] .tab-bg {
+        left: 66.66%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab-container" data-active="buy" id="tabs">
+      <div class="tab-bg"></div>
+      <div class="tab active" data-tab="buy"><h4>Buy</h4></div>
+      <div class="tab" data-tab="rent"><h4>Rent</h4></div>
+      <div class="tab" data-tab="favorites"><h4>Favorites</h4></div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const container = document.getElementById("tabs");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document.querySelector(".tab.active").classList.remove("active");
+          tab.classList.add("active");
+          container.setAttribute("data-active", tab.dataset.tab);
+        });
+      });
+    </script>
+  </body>
+</html>
