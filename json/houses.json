@@ -4,7 +4,21 @@
         "HouseImage" : "../json/modern home.jpg",
         "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
         "housePrice" : "1,000,000",
+        "isHouse" : 0
+    },
+    {
+        "houseName" : "Modern House For a Family",
+        "HouseImage" : "../json/modern home.jpg",
+        "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
+        "housePrice" : "1,000,000",
         "isHouse" : 1
+    },
+    {
+        "houseName" : "Modern House For a Family",
+        "HouseImage" : "../json/modern home.jpg",
+        "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
+        "housePrice" : "1,000,000",
+        "isHouse" : 0
     },
     {
         "houseName" : "Modern House For a Family",
@@ -25,21 +39,7 @@
         "HouseImage" : "../json/modern home.jpg",
         "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
         "housePrice" : "1,000,000",
-        "isHouse" : 1
-    },
-    {
-        "houseName" : "Modern House For a Family",
-        "HouseImage" : "../json/modern home.jpg",
-        "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
-        "housePrice" : "1,000,000",
-        "isHouse" : 1
-    },
-    {
-        "houseName" : "Modern House For a Family",
-        "HouseImage" : "../json/modern home.jpg",
-        "houseLocation": "23 Willow Creek Lane, Pleasantville, CA 91234",
-        "housePrice" : "1,000,000",
-        "isHouse" : 1
+        "isHouse" : 0
     },
     {
         "houseName" : "Modern House For a Family",

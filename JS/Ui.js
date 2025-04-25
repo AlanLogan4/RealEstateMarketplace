@@ -24,6 +24,10 @@ async function main() {
 function BuildCard(house) {
     const cardDiv = document.createElement("div");
     cardDiv.className = "property-card";
+    if (house.isHouse == 0)
+    {
+      cardDiv.setAttribute("data-type", "rent");
+    }
   
     const imgHouse = document.createElement("img");
     imgHouse.src = house.HouseImage; // example: "images/modern_home.jpg"
@@ -64,9 +68,32 @@ function BuildCard(house) {
 
 
 // Refresh Cards
-function RefreshCards()
+function RefreshCardRent()
 {
-    
+    const cards = document.querySelectorAll(".property-card")
+
+    cards.forEach((card) =>{
+      if(card.dataset.type == "rent")
+      {
+        card.style.display = "block";
+        console.log("this card has rental")
+      }
+      else {
+        card.style.display = "none";
+      }
+      
+
+
+    })
+}
+
+function RefreshCardBuy()
+{
+    const cards = document.querySelectorAll(".property-card")
+
+    cards.forEach((card) =>{
+        card.style.display = "block";
+    })
 }
 
 
@@ -104,7 +131,14 @@ tabs.forEach((tab) => {
     tabs.forEach((t) => t.classList.remove("active"));
 
     tab.classList.add("active");
-
+    if (tab.textContent == "Rent")
+    {
+      RefreshCardRent()
+    }
+    else if (tab.textContent == "Buy")
+    {
+      RefreshCardBuy()
+    }
     console.log(`${tab.textContent} tab selected`);
   });
 });
