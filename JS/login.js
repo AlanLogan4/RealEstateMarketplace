@@ -28,6 +28,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     window.location.href = "/index.html";
   } else if (data.userType == "Seller") {
-
+    window.location.href = "/Pages/SellerAccount.html";
   }
 });
