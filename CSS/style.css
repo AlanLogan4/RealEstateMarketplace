@@ -180,12 +180,12 @@ body {
     color: #0066cc;
     font-weight: bold;
   }
-=======
+/* =======
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   background: #fff;
-}
+} */
 
 .navbar {
   display: flex;
@@ -317,13 +317,13 @@ a {
   text-decoration: none;
   color: inherit;
 }
->>>>>>> a9b87697acfc6627eb6dda8faeb8b573c09a6de4
+/* >>>>>>> a9b87697acfc6627eb6dda8faeb8b573c09a6de4
 
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   background: #fff;
-}
+} */
 
 .navbar {
   display: flex;
