@@ -17,13 +17,15 @@
         <div class="logo"></div>
       </a>
       <div class="search-bar">
-        <input type="text" placeholder="Search..." />
-        <button>🔍</button>
+
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button onclick="handleSearch()">🔍</button>
       </div>
       <div class="nav-buttons">
-        <button class="active">Buy</button>
-        <button>Rent</button>
-        <button>Favorites</button>
+        <button class="tab active">Buy</button>
+        <button class="tab">Rent</button>
+        <button class="tab">Favorites</button>
+
       </div>
       <a href="/RealEstateMarketplace/Pages/logIn.html">
         <div class="account">
@@ -35,10 +37,26 @@
 
     <!-- Filter Section -->
     <section class="filters">
-      <button>Location ⌄</button>
+      <button class="Location">Location ⌄</button>
+      <button class="PriceRange">Price Range ⌄</button>
+      <button class="TerrainSize">Terrain Size ⌄</button>
+      <button class="YearRange">Year Range ⌄</button>
+      <button class="RoomCount">Room Count ⌄</button>
+      <div class="locationDropdown Filter">
+        <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
+
+        <div class="dropdown" id="locationDropdown">
+          <p onclick="applyFilter('New York')">New York</p>
+          <p onclick="applyFilter('California')">California</p>
+        </div>
+      </div>
+
       <button>Price Range ⌄</button>
+
       <button>Terrain Size ⌄</button>
+
       <button>Year Range ⌄</button>
+
       <button>Room Count ⌄</button>
     </section>
 
@@ -46,27 +64,76 @@
     <section class="property-grid">
       <!-- Property Card -->
       <div class="property-card">
-        <img src="/RealEstateMarketplace/images/housePic.jpg" alt="House" />
+        <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
           <h3>HOUSE</h3>
           <p>📍 Location</p>
+          <div class="divider"></div>
           <p class="price">Price</p>
-          <span class="bookmark">🔖</span>
+          <span class="bookmark">❤️</span>
+          <span class="bookmark" onclick="toggleBookmark(this)">🔖</span>
         </div>
       </div>
 
       <!-- Repeat the card as needed -->
       <div class="property-card">
-        <img src="/RealEstateMarketplace/images/housePic2.jpg" alt="House" />
+        <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
           <h3>HOUSE</h3>
           <p>📍 Location</p>
+          <div class="divider"></div>
           <p class="price">Price</p>
-          <span class="bookmark">🔖</span>
+          <span class="bookmark">❤️</span>
         </div>
       </div>
 
       <!-- Add more cards -->
+
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="../json/modern home.jpg" alt="House" />
+        <div class="property-info">
+          <h3>HOUSE</h3>
+          <p>📍 Location</p>
+          <div class="divider"></div>
+          <p class="price">Price</p>
+          <span class="bookmark">❤️</span>
+        </div>
+      </div>
     </section>
+    <script type="module" src="../JS/Ui.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>

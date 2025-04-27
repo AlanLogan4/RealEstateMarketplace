@@ -11,4 +11,10 @@ namespace RealEstate.Models
         public string Password { get; set; }
     }
 
+    public class LogInRequest
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+
 }
