@@ -72,8 +72,8 @@ function render() {
         <img src="${img}" alt="${item.houseName}" />
         <div class="property-overlay">
           <h3>${item.houseName}</h3>
-          <p class="location">${item.houseLocation}</p>
-          <p class="price">${item.housePrice}</p>
+          <p class="location">📌${item.houseLocation}</p>
+          <p class="price"> $${item.housePrice}</p>
         </div>
       </div>`;
       })
