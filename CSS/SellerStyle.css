@@ -1,260 +1,38 @@
-/* ========== Global Styles ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  background-color: #ffffff;
-  color: #333;
-}
-
-/* ========== Navbar ========== */
-.navbar {
+/* ========== FILTER BUTTONS ========== */
+.filters {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #0066cc; /* Blue background */
-  padding: 10px 20px;
-}
-
-.logo {
-  width: 50px;
-  height: 50px;
-  background-color: #ccc;
-  border-radius: 5px;
-}
-
-.top-filters {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex: 1;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 0;
 }
 
-.search-bar-custom {
-  display: inline-flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 9999px; /* Large radius = pill shape */
-  padding: 5px 15px; /* Horizontal padding inside the pill */
-  transition: box-shadow 0.3s ease;
-}
-
-.search-bar-custom input {
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px;
-  width: 120px;
-  margin-right: 10px; /* Space between text and icon */
-}
-
-.search-bar-custom input:focus,
-.search-bar-custom:focus-within {
-  /* subtle shadow on focus */
-  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.5);
-}
-
-.search-bar-custom .search-icon {
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s ease;
-}
-
-.toggle-custom {
-  display: inline-flex;
-  align-items: center;
-  background: #0096e5; /* Teal/blue background */
-  border-radius: 9999px; /* Pill shape again */
-  padding: 5px;
-}
-
-.toggle-option {
-  border: none;
-  background: transparent; /* So the teal shows behind it */
-  color: #000; /* Black text for unselected */
-  cursor: pointer;
-  padding: 5px 15px;
-  border-radius: 9999px;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.toggle-option.active {
-  background: #fff; /* White circle for the active item */
-  color: #0066cc; /* Blue text for active item */
-  font-weight: 600;
-}
-
-/* Search bar */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 20px;
-  padding: 5px 10px;
-  min-width: 200px;
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  width: 150px;
-  font-size: 14px;
-}
-
-.search-bar button {
-  border: none;
-  background: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Nav buttons */
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.nav-buttons button {
-  background: transparent;
-  border: 2px solid white;
-  border-radius: 20px;
-  padding: 5px 15px;
+.filters button {
+  background: #0096e5;
   color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Active button (e.g., "Buy") */
-.nav-buttons .active {
-  background: #fff;
-  color: #0066cc;
-  border-color: #fff;
-}
-
-/* Account container (top-right) */
-.account {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-}
-
-/* Small avatar (top-right) */
-.avatar-small {
-  width: 40px;
-  height: 40px;
-  background: #ccc;
-  border-radius: 50%;
-}
-
-/* ========== Seller Profile Section ========== */
-.seller-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 40px 20px 20px;
-}
-
-/* Large circle avatar */
-.seller-avatar {
-  width: 120px;
-  height: 120px;
-  background: #ccc;
-  border-radius: 50%;
-}
-
-/* Seller details text */
-.seller-details p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-/* Bold label text (e.g. "Account:", "Cell Phone:") */
-.bold-label {
-  font-weight: 600;
-}
-
-/* Horizontal divider (full width) */
-.divider {
-  width: 90%;
-  margin: 0 auto;
   border: none;
-  border-top: 1px solid #333;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* ========== "YOUR HOMES" Title ========== */
-.homes-title {
-  text-align: center;
-  font-size: 24px;
-  margin: 20px 0 30px 0;
-  font-weight: 600;
-  letter-spacing: 1px;
+.filters button:hover {
+  background: #007bbf;
 }
 
-/* ========== Property Grid ========== */
+/* ========== PROPERTY GRID (already in your CSS, shown here for context) ========== */
+/* .property-grid { … } */
+/* .property-card { … } */
+/* .property-overlay { … } */
+
+/*  Ensure the grid sits nicely under the filters */
 .property-grid {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-}
-
-.property-card {
-  position: relative;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* House image */
-.property-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-/* White overlay at bottom of property card */
-.property-overlay {
-  position: relative;
-  background: #fff;
-  padding: 10px 15px;
-}
-
-/* Bookmark icon in overlay (top-right corner inside overlay) */
-.bookmark {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* HOUSE, location, price text styling */
-.property-overlay h3 {
-  margin: 0 0 5px;
-  font-weight: 600;
-}
-
-.property-overlay .location {
-  margin: 2px 0;
-}
-
-.property-overlay .price {
-  margin: 2px 0;
-  color: #0077cc;
-  font-weight: 600;
 }
