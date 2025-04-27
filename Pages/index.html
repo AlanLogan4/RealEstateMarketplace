@@ -1,141 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real Estate Home</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <header class="navbar">
-      <a href="/Pages/index.html">
-        <div class="logo"></div>
-      </a>
-      <div class="search-bar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Estate Home</title>
+  <link rel="stylesheet" href="/CSS/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+        rel="stylesheet"/>
+</head>
+<body>
 
-        <input type="text" id="searchInput" placeholder="Search..." />
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="/Pages/index.html" class="logo-link">
+      <div class="logo"></div>
+    </a>
 
-        <button id="searchButton" onclick="handleSearch()">🔍</button>
+    <div class="top-filters">
+      <!-- Search Pill -->
+      <div class="search-bar-custom">
+        <input id="searchInput" type="text" placeholder="Search..." />
+        <button id="searchButton" class="search-icon">🔍</button>
       </div>
-
-      <div class="nav-buttons">
-        <button class="tab active">Buy</button>
-        <button class="tab">Rent</button>
-        <button class="tab">Favorites</button>
-
+      <!-- All / Rent / Sell Toggle -->
+      <div class="toggle-custom">
+        <button data-mode="all"  class="toggle-option active">All</button>
+        <button data-mode="rent" class="toggle-option">Rent</button>
+        <button data-mode="sell" class="toggle-option">Sell</button>
       </div>
-      <a href="/Pages/logIn.html">
-        <div class="account">
-          <div class="avatar"></div>
-          <span>Account</span>
-        </div>
-      </a>
-    </header>
+    </div>
 
-    <!-- Filter Section -->
-    <section class="filters">
-      <button class="Location">Location ⌄</button>
-      <button class="PriceRange">Price Range ⌄</button>
-      <button class="TerrainSize">Terrain Size ⌄</button>
-      <button class="YearRange">Year Range ⌄</button>
-      <button class="RoomCount">Room Count ⌄</button>
-      <!-- <div class="locationDropdown Filter">
-        <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
+    <a href="/Pages/logIn.html" class="account">
+      <div class="avatar-small"></div>
+      <span>Account</span>
+    </a>
+  </header>
 
-        <div class="dropdown" id="locationDropdown">
-          <p onclick="applyFilter('New York')">New York</p>
-          <p onclick="applyFilter('California')">California</p>
-        </div>
-      </div> -->
+  <!-- FILTER SECTION (static buttons) -->
+  <section class="filters">
+    <button class="filter-button">Location ⌄</button>
+    <button class="filter-button">Price Range ⌄</button>
+    <button class="filter-button">Terrain Size ⌄</button>
+    <button class="filter-button">Year Range ⌄</button>
+    <button class="filter-button">Room Count ⌄</button>
+  </section>
 
-      <!-- <button>Price Range ⌄</button>
+  <!-- PROPERTY GRID -->
+  <section class="property-grid">
+    <!-- Ui.js will inject cards here -->
+  </section>
 
-      <button>Terrain Size ⌄</button>
-
-      <button>Year Range ⌄</button>
-
-      <button>Room Count ⌄</button> -->
-    </section>
-
-    <!-- Property Grid -->
-    <section class="property-grid">
-      <!-- Property Card -->
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-          <!-- <span class="bookmark" onclick="toggleBookmark(this)">🔖</span> -->
-        </div>
-      </div>
-
-      <!-- Repeat the card as needed -->
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <!-- Add more cards -->
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-    </section>
-    <script type="module" src="../JS/Ui.js"></script>
-    <!-- <script type="module" src="main.js"></script> -->
-  </body>
+  <!-- SCRIPTS -->
+  <script type="module" src="/JS/domain.js"></script>
+  <script type="module" src="/JS/Ui.js"></script>
+</body>
 </html>

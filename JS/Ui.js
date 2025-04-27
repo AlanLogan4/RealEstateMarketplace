@@ -1,156 +1,81 @@
-import { LoadHouses, GetHouses } from '../JS/domain.js';
+import { LoadHouses, GetHouses } from "./domain.js";
+
+let selectedTab = "all";
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+searchInput.addEventListener("input", applyFilters);
+searchButton.addEventListener("click", applyFilters);
 
 async function main() {
-  console.log("start testing");
-  await LoadHouses()
-  const houses = GetHouses()
+  await LoadHouses();
+  const houses = GetHouses();
 
-  const propertyGrid = document.querySelector(".property-grid");
-  propertyGrid.replaceChildren();
+  const grid = document.querySelector(".property-grid");
+  grid.replaceChildren();
+  houses.forEach((house) => grid.appendChild(BuildCard(house)));
 
-  console.log("before foreach")
-  houses.forEach((house) => {
-    const card = BuildCard(house);
-    propertyGrid.appendChild(card);
-
-    console.log(house)
-  });
-
+  wireTabs();
+  wireSearch();
+  applyFilters();
 }
 
-
-// Build Card
-  
 function BuildCard(house) {
-    const cardDiv = document.createElement("div");
-    cardDiv.className = "property-card";
-    if (house.isHouse == 0)
-    {
-      cardDiv.setAttribute("data-type", "rent");
-    }
-  
-    const imgHouse = document.createElement("img");
-    imgHouse.src = house.HouseImage; // example: "images/modern_home.jpg"
-    imgHouse.alt = "House";
-  
-    const propertyInfo = document.createElement("div");
-    propertyInfo.className = "property-info";
-  
-    const title = document.createElement("h3");
-    title.textContent = house.houseName;
-  
-    const location = document.createElement("p");
-    location.textContent = `📍 ${house.houseLocation}`;
-  
-    const divider = document.createElement("div");
-    divider.className = "divider";
-  
-    const price = document.createElement("p");
-    price.className = "price";
-    price.textContent = house.housePrice;
-  
-    const bookmark = document.createElement("span");
-    bookmark.className = "favorite";
-    bookmark.textContent = "❤️";
-  
-    // Assemble structure
-    propertyInfo.appendChild(title);
-    propertyInfo.appendChild(location);
-    propertyInfo.appendChild(divider);
-    propertyInfo.appendChild(price);
-    propertyInfo.appendChild(bookmark);
-  
-    cardDiv.appendChild(imgHouse);
-    cardDiv.appendChild(propertyInfo);
-  
-    return cardDiv;
-  }
+  const card = document.createElement("div");
+  card.className = "property-card";
+  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
+  card.dataset.name = house.houseName.toLowerCase();
 
+  const img = document.createElement("img");
+  img.src = house.HouseImage;
+  img.alt = house.houseName;
 
-// Refresh Cards
-function RefreshCardRent()
-{
-    const cards = document.querySelectorAll(".property-card")
+  const overlay = document.createElement("div");
+  overlay.className = "property-overlay";
+  overlay.innerHTML = `
+    <h3>${house.houseName}</h3>
+    <p class="location">📍 ${house.houseLocation}</p>
+    <p class="price">${house.housePrice}</p>
+  `;
 
-    cards.forEach((card) =>{
-      if(card.dataset.type == "rent")
-      {
-        card.style.display = "block";
-        console.log("this card has rental")
-      }
-      else {
-        card.style.display = "none";
-      }
-      
-
-
-    })
+  card.append(img, overlay);
+  return card;
 }
 
-function RefreshCardBuy()
-{
-    const cards = document.querySelectorAll(".property-card")
-
-    cards.forEach((card) =>{
-        card.style.display = "block";
-    })
-}
-
-
-// Event for Filters
-const locationButton = document.querySelector(".Location");
-locationButton.addEventListener("click", () => {
-  console.log("Location clicked");
-});
-
-const priceRangeButton = document.querySelector(".PriceRange");
-priceRangeButton.addEventListener("click", () => {
-  console.log("Price Range clicked");
-});
-
-const terrainSizeButton = document.querySelector(".TerrainSize");
-terrainSizeButton.addEventListener("click", () => {
-  console.log("Terrain Size clicked");
-});
-
-const yearRangeButton = document.querySelector(".YearRange");
-yearRangeButton.addEventListener("click", () => {
-  console.log("Year Range clicked");
-});
-
-const roomCountButton = document.querySelector(".RoomCount");
-roomCountButton.addEventListener("click", () => {
-  console.log("Room Count clicked");
-});
-
-// Switch tabs Events
-const tabs = document.querySelectorAll(".tab");
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("active"));
-
-    tab.classList.add("active");
-    if (tab.textContent == "Rent")
-    {
-      RefreshCardRent()
-    }
-    else if (tab.textContent == "Buy")
-    {
-      RefreshCardBuy()
-    }
-    console.log(`${tab.textContent} tab selected`);
+function applyFilters() {
+  const q = searchInput.value.trim().toLowerCase();
+  document.querySelectorAll(".property-card").forEach((card) => {
+    const typeOk = selectedTab === "all" || card.dataset.type === selectedTab;
+    const searchOk = !q || card.dataset.name.includes(q);
+    card.style.display = typeOk && searchOk ? "block" : "none";
   });
-});
+}
 
-//filter Search Button Event
-const searchInput = document.getElementById("searchInput")
-const searchBtn = document.getElementById("searchButton");
+function debounce(fn, ms = 100) {
+  let t;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...args), ms);
+  };
+}
 
-searchBtn.addEventListener("click", ()=>{
-    const query = searchInput.value.trim().toLowerCase();
-    console.log("Look up:", query);
-})
+const debouncedFilter = debounce(applyFilters, 150);
+searchInput.addEventListener("input", debouncedFilter);
 
+function wireTabs() {
+  document.querySelectorAll(".toggle-option").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      selectedTab = btn.dataset.mode;
+      document
+        .querySelectorAll(".toggle-option")
+        .forEach((b) => b.classList.toggle("active", b === btn));
+      applyFilters();
+    });
+  });
+}
 
-main();
+function wireSearch() {
+  searchInput.addEventListener("input", applyFilters);
+  searchButton.addEventListener("click", applyFilters);
+}
+
+document.addEventListener("DOMContentLoaded", main);
