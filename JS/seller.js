@@ -59,7 +59,7 @@ function render() {
   }
 
   // update heading
-  const titles = { all: "YOUR HOMES", rent: "YOUR RENTALS", sell: "FOR SALE" };
+  const titles = { all: "ALL FAVORITE LISTINGS", rent: "RENTALS", sell: "FOR SALE" };
   document.querySelector(".homes-title").textContent = titles[currentMode];
 
   // render cards
