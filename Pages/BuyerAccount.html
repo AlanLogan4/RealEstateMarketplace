@@ -1,82 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buyer Page</title>
-  <link rel="stylesheet" href="/CSS/BuyerStyle.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyer Page</title>
+    <link rel="stylesheet" href="/CSS/BuyerStyle.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar">
+      <a href="/Pages/index.html">
+        <div class="logo"></div>
+      </a>
 
-  <!-- ========== NAVBAR ========== -->
-  <header class="navbar">
-    <div class="logo"></div>
-
-    <div class="top-filters">
-      <!-- Search -->
-      <div class="search-bar-custom">
-        <input type="text" placeholder="Search..." />
-        <button type="button" class="search-icon">🔍</button>
+      <div class="top-filters">
+        <!-- Search -->
+        <div class="search-bar-custom">
+          <input type="text" placeholder="Search..." />
+          <button type="button" class="search-icon">🔍</button>
+        </div>
+        <!-- Buy / rent / favorites -->
+        <div class="toggle-custom">
+          <button class="toggle-option active">Buy</button>
+          <button class="toggle-option">rent</button>
+          <button class="toggle-option">favorites</button>
+        </div>
       </div>
-      <!-- Buy / rent / favorites -->
-      <div class="toggle-custom">
-        <button class="toggle-option active">Buy</button>
-        <button class="toggle-option">rent</button>
-        <button class="toggle-option">favorites</button>
+
+      <div class="account">
+        <div class="avatar-small"></div>
+        <span>Account</span>
       </div>
-    </div>
+    </header>
 
-    <div class="account">
-      <div class="avatar-small"></div>
-      <span>Account</span>
-    </div>
-  </header>
+    <!-- ========== FILTER BAR ========== -->
+    <section class="filters">
+      <button>Location ⌄</button>
+      <button>Price Range ⌄</button>
+      <button>Terrain Size ⌄</button>
+      <button>Year Range ⌄</button>
+      <button>Room Count ⌄</button>
+    </section>
 
-  <!-- ========== FILTER BAR ========== -->
-  <section class="filters">
-    <button>Location ⌄</button>
-    <button>Price Range ⌄</button>
-    <button>Terrain Size ⌄</button>
-    <button>Year Range ⌄</button>
-    <button>Room Count ⌄</button>
-  </section>
-
-  <!-- ========== PROPERTY GRID ========== -->
-  <section class="property-grid">
-    <!-- Repeat this card for each listing -->
-    <div class="property-card">
-      <img src="house1.jpg" alt="House Example" />
-      <div class="property-overlay">
-        <span class="bookmark">🔖</span>
-        <h3>HOUSE</h3>
-        <p class="location">Location</p>
-        <p class="price">Price</p>
+    <!-- ========== PROPERTY GRID ========== -->
+    <section class="property-grid">
+      <!-- Repeat this card for each listing -->
+      <div class="property-card">
+        <img src="house1.jpg" alt="House Example" />
+        <div class="property-overlay">
+          <span class="bookmark">🔖</span>
+          <h3>HOUSE</h3>
+          <p class="location">Location</p>
+          <p class="price">Price</p>
+        </div>
       </div>
-    </div>
 
-    <div class="property-card">
-      <img src="house2.jpg" alt="House Example" />
-      <div class="property-overlay">
-        <span class="bookmark">🔖</span>
-        <h3>HOUSE</h3>
-        <p class="location">Location</p>
-        <p class="price">Price</p>
+      <div class="property-card">
+        <img src="house2.jpg" alt="House Example" />
+        <div class="property-overlay">
+          <span class="bookmark">🔖</span>
+          <h3>HOUSE</h3>
+          <p class="location">Location</p>
+          <p class="price">Price</p>
+        </div>
       </div>
-    </div>
 
-    <div class="property-card">
-      <img src="house3.jpg" alt="House Example" />
-      <div class="property-overlay">
-        <span class="bookmark">🔖</span>
-        <h3>HOUSE</h3>
-        <p class="location">Location</p>
-        <p class="price">Price</p>
+      <div class="property-card">
+        <img src="house3.jpg" alt="House Example" />
+        <div class="property-overlay">
+          <span class="bookmark">🔖</span>
+          <h3>HOUSE</h3>
+          <p class="location">Location</p>
+          <p class="price">Price</p>
+        </div>
       </div>
-    </div>
 
-    <!-- add more cards as needed -->
-  </section>
-
-</body>
+      <!-- add more cards as needed -->
+    </section>
+  </body>
 </html>

@@ -11,6 +11,14 @@ public class UsersController : ControllerBase
     [HttpPost("register")]
     public IActionResult Register([FromBody] User user)
     {
+        var users = JsonDataService.LoadUsers();
+
+        var existUser = DataStore.Users.FirstOrDefault(u => u.Username == user.Username);
+        if (existUser != null)
+        {
+            return Unauthorized(new { message = "User Already Exist" });
+        }
+
         user.Id = DataStore.Users.Count + 1;
         DataStore.Users.Add(user);
         DataStore.SaveAll();
@@ -30,7 +38,7 @@ public class UsersController : ControllerBase
         var users = JsonDataService.LoadUsers();
 
         var user = DataStore.Users.FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
-        if(user == null)
+        if (user == null)
         {
             return Unauthorized(new { message = "Invalid username or password" });
         }
