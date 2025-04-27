@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "Username": "alan",
+    "Email": "wasd@gmail.com",
+    "Role": "buyer",
+    "Password": "123"
+  },
+  {
+    "Id": 2,
+    "Username": "Alan",
+    "Email": "wasd@gmail.com",
+    "Role": "buyer",
+    "Password": "123"
+  }
+]

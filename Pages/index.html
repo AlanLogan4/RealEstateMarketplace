@@ -9,42 +9,34 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-
   </head>
   <body>
     <!-- Navbar -->
     <header class="navbar">
-      <div class="logo"></div>
+      <a href="/Pages/index.html">
+        <div class="logo"></div>
+      </a>
       <div class="search-bar">
+
         <input type="text" id="searchInput" placeholder="Search..." />
-        <button id="searchButton">🔍</button>
-        <input type="text" id="searchInput" placeholder="Search..." />
-        <button onclick="handleSearch()">🔍</button>
+
+        <button id="searchButton" onclick="handleSearch()">🔍</button>
       </div>
+
       <div class="nav-buttons">
-        <button  class="tab active">Buy</button>
+        <button class="tab active">Buy</button>
         <button class="tab">Rent</button>
-        <button class="tab" >Favorites</button>
-        <button onclick="setMode('buy')" id="btn-buy" class="active">
-          Buy
-        </button>
+        <button class="tab">Favorites</button>
 
-        <button onclick="setMode('rent')" id="btn-rent">Rent</button>
-
-        <button onclick="setMode('favorites')" id="btn-fav">Favorites</button>
       </div>
-      <a href="/RealEstateMarketplace/Pages/logIn.html">
+      <a href="/Pages/logIn.html">
         <div class="account">
           <div class="avatar"></div>
           <span>Account</span>
         </div>
       </a>
-      <div class="account" id="accountButton">
-        <div class="avatar-small"></div>
-        <span>Account</span>
-      </div>
     </header>
-    
+
     <!-- Filter Section -->
     <section class="filters">
       <button class="Location">Location ⌄</button>
@@ -52,24 +44,24 @@
       <button class="TerrainSize">Terrain Size ⌄</button>
       <button class="YearRange">Year Range ⌄</button>
       <button class="RoomCount">Room Count ⌄</button>
-      <div class="locationDropdown Filter">
+      <!-- <div class="locationDropdown Filter">
         <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
 
         <div class="dropdown" id="locationDropdown">
           <p onclick="applyFilter('New York')">New York</p>
           <p onclick="applyFilter('California')">California</p>
         </div>
-      </div>
+      </div> -->
 
-      <button>Price Range ⌄</button>
+      <!-- <button>Price Range ⌄</button>
 
       <button>Terrain Size ⌄</button>
 
       <button>Year Range ⌄</button>
 
-      <button>Room Count ⌄</button>
+      <button>Room Count ⌄</button> -->
     </section>
-    
+
     <!-- Property Grid -->
     <section class="property-grid">
       <!-- Property Card -->
@@ -81,10 +73,10 @@
           <div class="divider"></div>
           <p class="price">Price</p>
           <span class="bookmark">❤️</span>
-          <span class="bookmark" onclick="toggleBookmark(this)">🔖</span>
+          <!-- <span class="bookmark" onclick="toggleBookmark(this)">🔖</span> -->
         </div>
       </div>
-      
+
       <!-- Repeat the card as needed -->
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
@@ -96,9 +88,9 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <!-- Add more cards -->
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -109,7 +101,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -120,7 +112,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -131,7 +123,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -144,7 +136,6 @@
       </div>
     </section>
     <script type="module" src="../JS/Ui.js"></script>
-    <script type="module" src="main.js"></script>
+    <!-- <script type="module" src="main.js"></script> -->
   </body>
-  </html>
-  
+</html>

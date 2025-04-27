@@ -25,8 +25,8 @@ body {
   }
   
   /* FORM BUTTONS */
-  .login-container button,
-  .createAccount-container button {
+  .login-container button[type="submit"],
+  .createAccount-container button[type = "submit"] {
     width: 100%;
     padding: 10px;
     background: #4caf50;

@@ -4,8 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Create Account</title>
-    <link rel="stylesheet" href="/RealEstateMarketplace/CSS/loginStyle.css" />
-    <link rel="stylesheet" href="/RealEstateMarketplace/CSS/style.css" />
+    <link rel="stylesheet" href="/CSS/loginStyle.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
@@ -13,7 +13,9 @@
   </head>
   <body>
     <header class="navbar">
-      <div class="logo"></div>
+      <a href="/Pages/index.html">
+        <div class="logo"></div>
+      </a>
       <div class="search-bar">
         <input type="text" placeholder="Search..." />
         <button>🔍</button>
@@ -23,7 +25,7 @@
         <button>Rent</button>
         <button>Favorites</button>
       </div>
-      <a href="/RealEstateMarketplace/Pages/logIn.html">
+      <a href="/Pages/logIn.html">
         <div class="account">
           <div class="avatar"></div>
           <span>Account</span>
@@ -35,6 +37,7 @@
       <form id="createAccountForm">
         <h2>Create Account</h2>
         <input type="text" id="newUsername" placeholder="Username" required />
+        <input type="email" id="newEmail" placeholder="Email" required />
         <input
           type="password"
           id="newPassword"
@@ -52,12 +55,12 @@
           <h4>Type of Account:</h4>
 
           <label for="">
-            <input type="radio" name="userType" id="" checked />
+            <input type="radio" name="userType" id="buyer" checked />
             Buyer
           </label>
 
           <label for="">
-            <input type="radio" name="userType" id="" />
+            <input type="radio" name="userType" id="seller" />
             Seller
           </label>
         </div>
@@ -67,10 +70,10 @@
       <p id="message"></p>
       <div>
         Already have an account?
-        <a href="/RealEstateMarketplace/Pages/logIn.html">Log In</a>
+        <a href="/Pages/logIn.html">Log In</a>
       </div>
     </div>
 
-    <script src="/RealEstateMarketplace/JS/createAccount.js"></script>
+    <script src="/JS/createAccount.js"></script>
   </body>
 </html>
