@@ -23,7 +23,16 @@ async function main() {
   
 function BuildCard(house) {
     const cardDiv = document.createElement("div");
+
     cardDiv.className = "property-card";
+
+    cardDiv.addEventListener("click", ()=> {
+
+      window.location.assign("Houseinfo.html");
+
+
+    })
+
     if (house.isHouse == 0)
     {
       cardDiv.setAttribute("data-type", "rent");
