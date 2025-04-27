@@ -11,131 +11,103 @@
     />
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- NAVBAR -->
     <header class="navbar">
-      <a href="/Pages/index.html">
+      <a href="/Pages/index.html" class="logo-link">
         <div class="logo"></div>
       </a>
-      <div class="search-bar">
 
-        <input type="text" id="searchInput" placeholder="Search..." />
-
-        <button id="searchButton" onclick="handleSearch()">🔍</button>
-      </div>
-
-      <div class="nav-buttons">
-        <button class="tab active">Buy</button>
-        <button class="tab">Rent</button>
-        <button class="tab">Favorites</button>
-
-      </div>
-      <a href="/Pages/logIn.html">
-        <div class="account">
-          <div class="avatar"></div>
-          <span>Account</span>
+      <div class="top-filters">
+        <!-- Search Pill -->
+        <div class="search-bar-custom">
+          <input id="searchInput" type="text" placeholder="Search..." />
+          <button id="searchButton" class="search-icon">🔍</button>
         </div>
+        <!-- All / Rent / Sell Toggle -->
+        <div class="toggle-custom">
+          <button data-mode="all" class="toggle-option active">All</button>
+          <button data-mode="rent" class="toggle-option">Rent</button>
+          <button data-mode="sell" class="toggle-option">Sell</button>
+        </div>
+      </div>
+
+      <a href="/Pages/logIn.html" class="account">
+        <div class="avatar-small"></div>
+        <span>Account</span>
       </a>
     </header>
 
-    <!-- Filter Section -->
+    <!-- FILTER SECTION (static buttons) -->
     <section class="filters">
-      <button class="Location">Location ⌄</button>
-      <button class="PriceRange">Price Range ⌄</button>
-      <button class="TerrainSize">Terrain Size ⌄</button>
-      <button class="YearRange">Year Range ⌄</button>
-      <button class="RoomCount">Room Count ⌄</button>
-      <!-- <div class="locationDropdown Filter">
-        <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
-
-        <div class="dropdown" id="locationDropdown">
-          <p onclick="applyFilter('New York')">New York</p>
-          <p onclick="applyFilter('California')">California</p>
+      <!-- LOCATION DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Location▼</button>
+        <div class="dropdown-menu">
+          <p data-location="">All</p>
+          <p data-location="CA">California</p>
+          <p data-location="IL">Illinois</p>
+          <p data-location="UT">Utah</p>
+          <p data-location="NV">Nevada</p>
+          <p data-location="TX">Texas</p>
         </div>
-      </div> -->
+      </div>
 
-      <!-- <button>Price Range ⌄</button>
+      <!-- PRICE RANGE DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Price Range▼</button>
+        <div class="dropdown-menu">
+          <p data-min="0" data-max="999999999">All</p>
+          <p data-min="0" data-max="1000000">Under $1M</p>
+          <p data-min="1000000" data-max="2000000">$1M–$2M</p>
+          <p data-min="2000000" data-max="999999999">Over $2M</p>
+        </div>
+      </div>
 
-      <button>Terrain Size ⌄</button>
+      <!-- TERRAIN SIZE DROPDOWN (example placeholders) -->
+      <div class="dropdown">
+        <button class="filter-button">Terrain Size▼</button>
+        <div class="dropdown-menu">
+          <p data-terrain="">All</p>
+          <p data-terrain="small">Small</p>
+          <p data-terrain="medium">Medium</p>
+          <p data-terrain="large">Large</p>
+        </div>
+      </div>
 
-      <button>Year Range ⌄</button>
+      <!-- YEAR RANGE DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Year Range▼</button>
+        <div class="dropdown-menu">
+          <p data-year-min="0" data-year-max="9999">All</p>
+          <p data-year-min="1950" data-year-max="1999">1950–1999</p>
+          <p data-year-min="2000" data-year-max="2020">2000–2020</p>
+        </div>
+      </div>
 
-      <button>Room Count ⌄</button> -->
+      <!-- ROOM COUNT DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Room Count▼</button>
+        <div class="dropdown-menu">
+          <p data-rooms="">All</p>
+          <p data-rooms="1">1</p>
+          <p data-rooms="2">2</p>
+          <p data-rooms="3">3+</p>
+        </div>
+      </div>
+
+      <!-- RESET BUTTON -->
+      <button id="resetFilters" class="filter-button reset-button">
+        Reset
+      </button>
     </section>
 
-    <!-- Property Grid -->
+    <!-- PROPERTY GRID -->
     <section class="property-grid">
-      <!-- Property Card -->
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-          <!-- <span class="bookmark" onclick="toggleBookmark(this)">🔖</span> -->
-        </div>
-      </div>
-
-      <!-- Repeat the card as needed -->
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <!-- Add more cards -->
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="../json/modern home.jpg" alt="House" />
-        <div class="property-info">
-          <h3>HOUSE</h3>
-          <p>📍 Location</p>
-          <div class="divider"></div>
-          <p class="price">Price</p>
-          <span class="bookmark">❤️</span>
-        </div>
-      </div>
+      <!-- Ui.js will inject cards here -->
     </section>
-    <script type="module" src="../JS/Ui.js"></script>
-    <!-- <script type="module" src="main.js"></script> -->
+
+    <!-- SCRIPTS -->
+    <script type="module" src="/JS/domain.js"></script>
+    <script type="module" src="/JS/Ui.js"></script>
   </body>
 </html>

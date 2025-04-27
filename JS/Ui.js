@@ -1,27 +1,99 @@
-import { LoadHouses, GetHouses } from '../JS/domain.js';
+import { LoadHouses, GetHouses } from "./domain.js";
+
+let selectedTab = "all"; // 'all' | 'rent' | 'sell'
+let filterLocation = ""; // e.g. "ca", "il"
+let filterMinPrice = NaN;
+let filterMaxPrice = NaN;
+let filterTerrain = ""; // e.g. "small", "medium", "large"
+let filterYearMin = NaN;
+let filterYearMax = NaN;
+let filterRooms = ""; // e.g. "1", "2", "3+"
 
 async function main() {
-  console.log("start testing");
-  await LoadHouses()
-  const houses = GetHouses()
+  await LoadHouses();
+  const houses = GetHouses();
 
-  const propertyGrid = document.querySelector(".property-grid");
-  propertyGrid.replaceChildren();
+  // build all cards
+  const grid = document.querySelector(".property-grid");
+  grid.replaceChildren();
+  houses.forEach((h) => grid.appendChild(BuildCard(h)));
 
-  console.log("before foreach")
-  houses.forEach((house) => {
-    const card = BuildCard(house);
-    propertyGrid.appendChild(card);
+  // wire up all the UI
+  wireTabs();
+  wireSearch();
+  wireDropdowns();
+  wireReset();
 
-    console.log(house)
-  });
-
+  // initial filter pass
+  applyFilters();
 }
 
-
-// Build Card
-  
 function BuildCard(house) {
+  const card = document.createElement("div");
+  card.className = "property-card";
+
+  // DATA ATTRIBUTES for filtering
+  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
+  card.dataset.name = house.houseName.toLowerCase();
+  card.dataset.location = house.houseLocation.toLowerCase();
+  // parse price into a number
+  card.dataset.price = parseInt(house.housePrice.replace(/[^0-9]/g, ""), 10);
+  // (If you add terrain/year/rooms fields to your JSON, set them here:)
+  // card.dataset.terrain = house.terrainSize;
+  // card.dataset.year    = house.yearBuilt;
+  // card.dataset.rooms   = house.roomCount;
+
+  // IMAGE
+  const img = document.createElement("img");
+  img.src = house.HouseImage;
+  img.alt = house.houseName;
+
+  // OVERLAY
+  const overlay = document.createElement("div");
+  overlay.className = "property-overlay";
+  overlay.innerHTML = `
+    <h3>${house.houseName}</h3>
+    <p class="location">📌${house.houseLocation}</p>
+    <p class="price">$${house.housePrice}</p>
+  `;
+
+  card.append(img, overlay);
+  return card;
+}
+
+function applyFilters() {
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+
+  document.querySelectorAll(".property-card").forEach((card) => {
+    const matchTab = selectedTab === "all" || card.dataset.type === selectedTab;
+    const matchSearch = !q || card.dataset.name.includes(q);
+    const matchLocation =
+      !filterLocation || card.dataset.location.includes(filterLocation);
+
+    const priceNum = Number(card.dataset.price);
+    const matchPrice =
+      (isNaN(filterMinPrice) || priceNum >= filterMinPrice) &&
+      (isNaN(filterMaxPrice) || priceNum <= filterMaxPrice);
+
+    const matchTerrain =
+      !filterTerrain || card.dataset.terrain === filterTerrain;
+    const yearNum = Number(card.dataset.year);
+    const matchYear =
+      (isNaN(filterYearMin) || yearNum >= filterYearMin) &&
+      (isNaN(filterYearMax) || yearNum <= filterYearMax);
+    const matchRooms = !filterRooms || card.dataset.rooms === filterRooms;
+
+    const visible =
+      matchTab &&
+      matchSearch &&
+      matchLocation &&
+      matchPrice &&
+      matchTerrain &&
+      matchYear &&
+      matchRooms;
+
+    card.style.display = visible ? "block" : "none";
+  });
     const cardDiv = document.createElement("div");
 
     cardDiv.className = "property-card";
@@ -96,70 +168,119 @@ function RefreshCardRent()
     })
 }
 
-function RefreshCardBuy()
-{
-    const cards = document.querySelectorAll(".property-card")
-
-    cards.forEach((card) =>{
-        card.style.display = "block";
+function wireTabs() {
+  document.querySelectorAll(".toggle-option").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      selectedTab = btn.dataset.mode;
+      document
+        .querySelectorAll(".toggle-option")
+        .forEach((b) => b.classList.toggle("active", b === btn));
+      applyFilters();
     })
+  );
 }
 
+function wireSearch() {
+  const input = document.getElementById("searchInput");
+  const button = document.getElementById("searchButton");
+  if (!input) return console.error("No #searchInput in DOM");
+  input.addEventListener("input", applyFilters);
+  if (button) button.addEventListener("click", applyFilters);
+}
 
-// Event for Filters
-const locationButton = document.querySelector(".Location");
-locationButton.addEventListener("click", () => {
-  console.log("Location clicked");
-});
+function wireDropdowns() {
+  document.querySelectorAll(".dropdown").forEach((dd) => {
+    const btn = dd.querySelector(".filter-button");
+    const menu = dd.querySelector(".dropdown-menu");
 
-const priceRangeButton = document.querySelector(".PriceRange");
-priceRangeButton.addEventListener("click", () => {
-  console.log("Price Range clicked");
-});
+    // open/close menu
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      document
+        .querySelectorAll(".dropdown.open")
+        .forEach((other) => other !== dd && other.classList.remove("open"));
+      dd.classList.toggle("open");
+    });
 
-const terrainSizeButton = document.querySelector(".TerrainSize");
-terrainSizeButton.addEventListener("click", () => {
-  console.log("Terrain Size clicked");
-});
+    // handle selection
+    menu.querySelectorAll("p").forEach((item) =>
+      item.addEventListener("click", (e) => {
+        dd.classList.remove("open");
+        btn.textContent = item.textContent + " ⌄";
 
-const yearRangeButton = document.querySelector(".YearRange");
-yearRangeButton.addEventListener("click", () => {
-  console.log("Year Range clicked");
-});
+        // Location filter
+        if (item.dataset.location !== undefined) {
+          filterLocation = item.dataset.location.toLowerCase();
+        }
+        // Price Range filter
+        if (item.dataset.min !== undefined) {
+          filterMinPrice = parseInt(item.dataset.min, 10);
+          filterMaxPrice = parseInt(item.dataset.max, 10);
+        }
+        // Terrain Size filter
+        if (item.dataset.terrain !== undefined) {
+          filterTerrain = item.dataset.terrain;
+        }
+        // Year Range filter
+        if (item.dataset.yearMin !== undefined) {
+          filterYearMin = parseInt(item.dataset.yearMin, 10);
+          filterYearMax = parseInt(item.dataset.yearMax, 10);
+        }
+        // Room Count filter
+        if (item.dataset.rooms !== undefined) {
+          filterRooms = item.dataset.rooms;
+        }
 
-const roomCountButton = document.querySelector(".RoomCount");
-roomCountButton.addEventListener("click", () => {
-  console.log("Room Count clicked");
-});
-
-// Switch tabs Events
-const tabs = document.querySelectorAll(".tab");
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => t.classList.remove("active"));
-
-    tab.classList.add("active");
-    if (tab.textContent == "Rent")
-    {
-      RefreshCardRent()
-    }
-    else if (tab.textContent == "Buy")
-    {
-      RefreshCardBuy()
-    }
-    console.log(`${tab.textContent} tab selected`);
+        applyFilters();
+      })
+    );
   });
-});
 
-//filter Search Button Event
-const searchInput = document.getElementById("searchInput")
-const searchBtn = document.getElementById("searchButton");
+  // close any open dropdown if clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".dropdown")) {
+      document
+        .querySelectorAll(".dropdown.open")
+        .forEach((dd) => dd.classList.remove("open"));
+    }
+  });
+}
 
-searchBtn.addEventListener("click", ()=>{
-    const query = searchInput.value.trim().toLowerCase();
-    console.log("Look up:", query);
-})
+function wireReset() {
+  const btn = document.getElementById("resetFilters");
+  if (!btn) return;
 
+  btn.addEventListener("click", () => {
+    // 1) Reset all state variables
+    selectedTab = "all";
+    filterLocation = "";
+    filterMinPrice = NaN;
+    filterMaxPrice = NaN;
+    filterTerrain = "";
+    filterYearMin = NaN;
+    filterYearMax = NaN;
+    filterRooms = "";
 
-main();
+    // 2) Reset the tab UI
+    document
+      .querySelectorAll(".toggle-option")
+      .forEach((b) => b.classList.toggle("active", b.dataset.mode === "all"));
+
+    // 3) Clear the search box
+    const si = document.getElementById("searchInput");
+    if (si) si.value = "";
+
+    // 4) Reset each dropdown’s label to its data-default
+    document.querySelectorAll(".dropdown").forEach((dd) => {
+      const button = dd.querySelector(".filter-button");
+      const def = button.dataset.default;
+      button.textContent = def + " ⌄";
+    });
+
+    // 5) Re‐apply filters
+    applyFilters();
+  });
+}
+
+// kick it off
+document.addEventListener("DOMContentLoaded", main);
