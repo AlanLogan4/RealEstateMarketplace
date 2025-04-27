@@ -122,3 +122,8 @@ function wireAccount() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+document.getElementById("logout").addEventListener("click", function () {
+  localStorage.removeItem("token"); // Remove token from local storage
+  window.location.href = "/Pages/logIn.html"; // Redirect to login page
+});
