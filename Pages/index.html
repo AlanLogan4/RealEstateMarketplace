@@ -19,8 +19,10 @@
       <div class="search-bar">
 
         <input type="text" id="searchInput" placeholder="Search..." />
-        <button onclick="handleSearch()">🔍</button>
+
+        <button id="searchButton" onclick="handleSearch()">🔍</button>
       </div>
+
       <div class="nav-buttons">
         <button class="tab active">Buy</button>
         <button class="tab">Rent</button>
@@ -42,22 +44,22 @@
       <button class="TerrainSize">Terrain Size ⌄</button>
       <button class="YearRange">Year Range ⌄</button>
       <button class="RoomCount">Room Count ⌄</button>
-      <div class="locationDropdown Filter">
+      <!-- <div class="locationDropdown Filter">
         <button onclick="toggleDropdown('locationDropdown')">Location ▼</button>
 
         <div class="dropdown" id="locationDropdown">
           <p onclick="applyFilter('New York')">New York</p>
           <p onclick="applyFilter('California')">California</p>
         </div>
-      </div>
+      </div> -->
 
-      <button>Price Range ⌄</button>
+      <!-- <button>Price Range ⌄</button>
 
       <button>Terrain Size ⌄</button>
 
       <button>Year Range ⌄</button>
 
-      <button>Room Count ⌄</button>
+      <button>Room Count ⌄</button> -->
     </section>
 
     <!-- Property Grid -->
@@ -71,7 +73,7 @@
           <div class="divider"></div>
           <p class="price">Price</p>
           <span class="bookmark">❤️</span>
-          <span class="bookmark" onclick="toggleBookmark(this)">🔖</span>
+          <!-- <span class="bookmark" onclick="toggleBookmark(this)">🔖</span> -->
         </div>
       </div>
 
@@ -134,6 +136,6 @@
       </div>
     </section>
     <script type="module" src="../JS/Ui.js"></script>
-    <script type="module" src="main.js"></script>
+    <!-- <script type="module" src="main.js"></script> -->
   </body>
 </html>
