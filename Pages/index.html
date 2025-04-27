@@ -9,29 +9,23 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-
   </head>
   <body>
     <!-- Navbar -->
     <header class="navbar">
-      <div class="logo"></div>
+      <a href="index.html">
+        <div class="logo"></div>
+      </a>
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search..." />
-        <button id="searchButton">🔍</button>
+
         <input type="text" id="searchInput" placeholder="Search..." />
         <button onclick="handleSearch()">🔍</button>
       </div>
       <div class="nav-buttons">
-        <button  class="tab active">Buy</button>
+        <button class="tab active">Buy</button>
         <button class="tab">Rent</button>
-        <button class="tab" >Favorites</button>
-        <button onclick="setMode('buy')" id="btn-buy" class="active">
-          Buy
-        </button>
+        <button class="tab">Favorites</button>
 
-        <button onclick="setMode('rent')" id="btn-rent">Rent</button>
-
-        <button onclick="setMode('favorites')" id="btn-fav">Favorites</button>
       </div>
       <a href="/RealEstateMarketplace/Pages/logIn.html">
         <div class="account">
@@ -39,12 +33,8 @@
           <span>Account</span>
         </div>
       </a>
-      <div class="account" id="accountButton">
-        <div class="avatar-small"></div>
-        <span>Account</span>
-      </div>
     </header>
-    
+
     <!-- Filter Section -->
     <section class="filters">
       <button class="Location">Location ⌄</button>
@@ -69,7 +59,7 @@
 
       <button>Room Count ⌄</button>
     </section>
-    
+
     <!-- Property Grid -->
     <section class="property-grid">
       <!-- Property Card -->
@@ -84,7 +74,7 @@
           <span class="bookmark" onclick="toggleBookmark(this)">🔖</span>
         </div>
       </div>
-      
+
       <!-- Repeat the card as needed -->
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
@@ -96,9 +86,9 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <!-- Add more cards -->
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -109,7 +99,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -120,7 +110,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -131,7 +121,7 @@
           <span class="bookmark">❤️</span>
         </div>
       </div>
-      
+
       <div class="property-card">
         <img src="../json/modern home.jpg" alt="House" />
         <div class="property-info">
@@ -146,5 +136,4 @@
     <script type="module" src="../JS/Ui.js"></script>
     <script type="module" src="main.js"></script>
   </body>
-  </html>
-  
+</html>

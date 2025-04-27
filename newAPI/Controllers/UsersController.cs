@@ -23,4 +23,17 @@ public class UsersController : ControllerBase
         var user = DataStore.Users.FirstOrDefault(u => u.Id == id);
         return user == null ? NotFound() : Ok(user);
     }
+
+    [HttpPost("login")]
+    public IActionResult Login([FromBody] LogInRequest request)
+    {
+        var users = JsonDataService.LoadUsers();
+
+        var user = DataStore.Users.FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
+        if(user == null)
+        {
+            return Unauthorized(new { message = "Invalid username or password" });
+        }
+        return Ok(new { message = "Login successful", user });
+    }
 }
