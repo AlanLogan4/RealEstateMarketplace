@@ -23,11 +23,12 @@ a {
   display: inline-block;
 }
 .logo {
-  width: 40px;
-  height: 40px;
-  background: gray;
+  width: 50px;
+  height: 50px;
+  background-image: url("/images/logo.png");
+  background-size: cover;
+  background-position: center;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 /* Top-filters (search + toggle) */
@@ -82,17 +83,23 @@ a {
 .toggle-option {
   border: none;
   background: transparent;
-  color: #000;
+  color: #ffffff;
   cursor: pointer;
   padding: 5px 15px;
   border-radius: 9999px;
   font-weight: 500;
   font-size: 14px;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 .toggle-option:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: #0066cc;
+  transform: translateY(-2px);
 }
+
+.toggle-option:active {
+  transform: translateY(1px);
+}
+
 .toggle-option.active {
   background: #fff;
   color: #0066cc;
@@ -104,6 +111,7 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #fff;
   cursor: pointer;
 }
 .avatar-small {
@@ -183,11 +191,14 @@ a {
   margin: 0 0 5px;
   font-weight: 600;
 }
-.property-overlay .location,
+.property-overlay .location {
+  margin: 2px 0;
+}
+
 .property-overlay .price {
   margin: 2px 0;
   color: #0077cc;
-  font-size: 14px;
+  font-weight: 600;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -208,7 +219,7 @@ a {
   }
   .toggle-custom {
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 8px;
   }
   .toggle-option {
@@ -268,7 +279,7 @@ a {
 }
 
 .reset-button {
-  background: ##0096e5; /* red */
+  background: #0096e5; /* red */
 }
 .reset-button:hover {
   background: #c53030;

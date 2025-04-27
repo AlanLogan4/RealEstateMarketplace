@@ -53,8 +53,8 @@ function BuildCard(house) {
   overlay.className = "property-overlay";
   overlay.innerHTML = `
     <h3>${house.houseName}</h3>
-    <p class="location">📍 ${house.houseLocation}</p>
-    <p class="price">${house.housePrice}</p>
+    <p class="location">📌${house.houseLocation}</p>
+    <p class="price">$${house.housePrice}</p>
   `;
 
   card.append(img, overlay);
