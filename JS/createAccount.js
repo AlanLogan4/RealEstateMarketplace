@@ -1,6 +1,6 @@
 document
-  .getElementById("createAccountForm")
-  .addEventListener("submit", async function (e) {
+  document.getElementById("createAccountForm")
+.addEventListener("submit", async function (e){
     e.preventDefault();
 
     const username = document.getElementById("newUsername").value;
@@ -32,9 +32,14 @@ document
       }),
     });
 
+    const data = await response.json();
+
     if (response.ok) {
       errorMsg.textContent = "Account Created Successful!";
-      errorMsg.style.display = "none";
+      console.log(userType);
+      localStorage.setItem("token", JSON.stringify(data)); // Store token in local storage
+// Store token in local storage
+
       if (userType === "buyer") {
         window.location.href = "/Pages/BuyerAccount.html";
       } else if (userType === "seller") {
