@@ -38,7 +38,7 @@ document
       if (userType === "buyer") {
         window.location.href = "/Pages/BuyerAccount.html";
       } else if (userType === "seller") {
-        window.location.href = "Pages/SellerAccount.html";
+        window.location.href = "/Pages/SellerAccount.html";
       }
     } else {
       errorMsg.textContent = "Login failed.";

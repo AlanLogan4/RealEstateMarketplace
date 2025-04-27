@@ -19,15 +19,16 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   if (response.ok) {
     document.getElementById("message").textContent =
       "Login successful!, Wellcome back " + username;
+    console.log(data.user.role);
+      if (data.user.role == "buyer") {
+        window.location.href = "/Pages/BuyerAccount.html";
+      } else if (data.user.role == "seller") {
+        window.location.href = "/Pages/SellerAccount.html";
+      }
     // Redirect or store token/session if needed
   } else {
     document.getElementById("message").textContent =
       data.message || "Login failed.";
   }
-  if (data.userType == "Buyer") {
 
-    window.location.href = "/index.html";
-  } else if (data.userType == "Seller") {
-    window.location.href = "/Pages/SellerAccount.html";
-  }
 });
