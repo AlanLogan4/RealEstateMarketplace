@@ -1,57 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real Estate Home</title>
-  <link rel="stylesheet" href="/CSS/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-        rel="stylesheet"/>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate Home</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <a href="/Pages/index.html" class="logo-link">
+        <div class="logo"></div>
+      </a>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <a href="/Pages/index.html" class="logo-link">
-      <div class="logo"></div>
-    </a>
-
-    <div class="top-filters">
-      <!-- Search Pill -->
-      <div class="search-bar-custom">
-        <input id="searchInput" type="text" placeholder="Search..." />
-        <button id="searchButton" class="search-icon">🔍</button>
+      <div class="top-filters">
+        <!-- Search Pill -->
+        <div class="search-bar-custom">
+          <input id="searchInput" type="text" placeholder="Search..." />
+          <button id="searchButton" class="search-icon">🔍</button>
+        </div>
+        <!-- All / Rent / Sell Toggle -->
+        <div class="toggle-custom">
+          <button data-mode="all" class="toggle-option active">All</button>
+          <button data-mode="rent" class="toggle-option">Rent</button>
+          <button data-mode="sell" class="toggle-option">Sell</button>
+        </div>
       </div>
-      <!-- All / Rent / Sell Toggle -->
-      <div class="toggle-custom">
-        <button data-mode="all"  class="toggle-option active">All</button>
-        <button data-mode="rent" class="toggle-option">Rent</button>
-        <button data-mode="sell" class="toggle-option">Sell</button>
+
+      <a href="/Pages/logIn.html" class="account">
+        <div class="avatar-small"></div>
+        <span>Account</span>
+      </a>
+    </header>
+
+    <!-- FILTER SECTION (static buttons) -->
+    <section class="filters">
+      <!-- LOCATION DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Location ⌄</button>
+        <div class="dropdown-menu">
+          <p data-location="">All</p>
+          <p data-location="CA">California</p>
+          <p data-location="IL">Illinois</p>
+          <p data-location="UT">Utah</p>
+          <p data-location="NV">Nevada</p>
+          <p data-location="TX">Texas</p>
+        </div>
       </div>
-    </div>
 
-    <a href="/Pages/logIn.html" class="account">
-      <div class="avatar-small"></div>
-      <span>Account</span>
-    </a>
-  </header>
+      <!-- PRICE RANGE DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Price Range ⌄</button>
+        <div class="dropdown-menu">
+          <p data-min="0" data-max="999999999">All</p>
+          <p data-min="0" data-max="1000000">Under $1M</p>
+          <p data-min="1000000" data-max="2000000">$1M–$2M</p>
+          <p data-min="2000000" data-max="999999999">Over $2M</p>
+        </div>
+      </div>
 
-  <!-- FILTER SECTION (static buttons) -->
-  <section class="filters">
-    <button class="filter-button">Location ⌄</button>
-    <button class="filter-button">Price Range ⌄</button>
-    <button class="filter-button">Terrain Size ⌄</button>
-    <button class="filter-button">Year Range ⌄</button>
-    <button class="filter-button">Room Count ⌄</button>
-  </section>
+      <!-- TERRAIN SIZE DROPDOWN (example placeholders) -->
+      <div class="dropdown">
+        <button class="filter-button">Terrain Size ⌄</button>
+        <div class="dropdown-menu">
+          <p data-terrain="">All</p>
+          <p data-terrain="small">Small</p>
+          <p data-terrain="medium">Medium</p>
+          <p data-terrain="large">Large</p>
+        </div>
+      </div>
 
-  <!-- PROPERTY GRID -->
-  <section class="property-grid">
-    <!-- Ui.js will inject cards here -->
-  </section>
+      <!-- YEAR RANGE DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Year Range ⌄</button>
+        <div class="dropdown-menu">
+          <p data-year-min="0" data-year-max="9999">All</p>
+          <p data-year-min="1950" data-year-max="1999">1950–1999</p>
+          <p data-year-min="2000" data-year-max="2020">2000–2020</p>
+        </div>
+      </div>
 
-  <!-- SCRIPTS -->
-  <script type="module" src="/JS/domain.js"></script>
-  <script type="module" src="/JS/Ui.js"></script>
-</body>
+      <!-- ROOM COUNT DROPDOWN -->
+      <div class="dropdown">
+        <button class="filter-button">Room Count ⌄</button>
+        <div class="dropdown-menu">
+          <p data-rooms="">All</p>
+          <p data-rooms="1">1</p>
+          <p data-rooms="2">2</p>
+          <p data-rooms="3">3+</p>
+        </div>
+      </div>
+
+      <!-- RESET BUTTON -->
+      <button id="resetFilters" class="filter-button reset-button">
+        Reset
+      </button>
+    </section>
+
+    <!-- PROPERTY GRID -->
+    <section class="property-grid">
+      <!-- Ui.js will inject cards here -->
+    </section>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="/JS/domain.js"></script>
+    <script type="module" src="/JS/Ui.js"></script>
+  </body>
 </html>
