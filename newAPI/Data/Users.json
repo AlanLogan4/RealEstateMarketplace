@@ -12,5 +12,19 @@
     "Email": "wasd@gmail.com",
     "Role": "buyer",
     "Password": "123"
+  },
+  {
+    "Id": 3,
+    "Username": "alan2",
+    "Email": "wasd@gmail.com",
+    "Role": "seller",
+    "Password": "123"
+  },
+  {
+    "Id": 4,
+    "Username": "alan3",
+    "Email": "wasd@gmail.com",
+    "Role": "seller",
+    "Password": "123"
   }
 ]
