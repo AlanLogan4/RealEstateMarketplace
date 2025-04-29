@@ -2,47 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seller Account</title>
-    <link rel="stylesheet" href="/CSS/SellerStyle.css" />
+    <link rel="stylesheet" href="/CSS/BuyerStyle.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- NAVBAR -->
     <header class="navbar">
-      <!-- Left: Logo Box -->
-       <a href="/Pages/index.html">
-         <div class="logo" ></div>
-
-       </a>
-       
+      <a href="/Pages/index.html" class="logo-link">
+        <div class="logo"></div>
+      </a>
       <div class="top-filters">
         <!-- Search Bar -->
         <div class="search-bar-custom">
-          <input type="text" placeholder="Search..." />
-
+          <input id="searchInput" type="text" placeholder="Search..." />
           <button type="button" class="search-icon">🔍</button>
         </div>
 
-        <!-- Buy/Rent/Favorites -->
-        <div class="toggle-custom">
-          <button class="toggle-option active">Buy</button>
-          <button class="toggle-option">rent</button>
-          <button class="toggle-option">favorites</button>
+
+        <div class="filter-fields">
+          <input
+            id="locationInput"
+            type="text"
+            placeholder="Filter by location..."
+            style="padding: 5px; border-radius: 5px; border: 1px solid #ccc"
+          />
+          <input
+            id="priceInput"
+            type="number"
+            placeholder="Max price..."
+            style="
+              padding: 5px;
+              border-radius: 5px;
+              border: 1px solid #ccc;
+              width: 120px;
+            "
+          />
         </div>
       </div>
 
-      <!-- Account Icon & Text -->
-      <div class="account">
+      <div class="account" id="accountButton">
         <div class="avatar-small"></div>
         <span>Account</span>
       </div>
     </header>
 
-    <!-- Seller Profile Section -->
+    <!-- PROFILE INFO -->
     <section class="seller-section">
       <div class="seller-avatar"></div>
       <div class="seller-details">
@@ -52,46 +61,16 @@
       </div>
     </section>
 
-    <!-- Horizontal Divider -->
     <hr class="divider" />
 
-    <!-- Homes Title -->
+    <!-- DYNAMIC TITLE -->
     <h2 class="homes-title">YOUR HOMES</h2>
 
-    <!-- Property Grid -->
+    <!-- PROPERTY GRID -->
     <section class="property-grid">
-      <!-- Card Example #1 -->
-      <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
-        <div class="property-overlay">
-          <span class="bookmark">🔖</span>
-          <h3>HOUSE</h3>
-          <p class="location">Location</p>
-          <p class="price">Price</p>
-        </div>
-      </div>
-
-      <!-- Copy/Paste more property-cards as needed -->
-      <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
-        <div class="property-overlay">
-          <span class="bookmark">🔖</span>
-          <h3>HOUSE</h3>
-          <p class="location">Location</p>
-          <p class="price">Price</p>
-        </div>
-      </div>
-
-      <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
-        <div class="property-overlay">
-          <span class="bookmark">🔖</span>
-          <h3>HOUSE</h3>
-          <p class="location">Location</p>
-          <p class="price">Price</p>
-        </div>
-      </div>
-      <!-- Add as many as you need -->
+      <!-- seller.js will inject cards here -->
     </section>
+
+    <script type="module" src="/JS/seller.js"></script>
   </body>
 </html>
