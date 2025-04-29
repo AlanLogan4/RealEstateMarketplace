@@ -59,7 +59,7 @@ function render() {
   }
 
   // update heading
-  const titles = { all: "ALL FAVORITE LISTINGS", rent: "RENTALS", sell: "FOR SALE" };
+  const titles = { all: "YOUR HOMES", rent: "RENTALS", sell: "FOR SALE" };
   document.querySelector(".homes-title").textContent = titles[currentMode];
 
   // render cards
@@ -117,7 +117,7 @@ function wirePrice() {
 
 function wireAccount() {
   document.getElementById("accountButton").addEventListener("click", () => {
-    window.location.href = "/Pages/BuyerAccount.html";
+    window.location.href = "/Pages/SellerAccount.html";
   });
 }
 
