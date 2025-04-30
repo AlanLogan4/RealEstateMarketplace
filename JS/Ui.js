@@ -94,6 +94,78 @@ function applyFilters() {
 
     card.style.display = visible ? "block" : "none";
   });
+    const cardDiv = document.createElement("div");
+
+    cardDiv.className = "property-card";
+
+    cardDiv.addEventListener("click", ()=> {
+
+      window.location.assign("Houseinfo.html");
+
+
+    })
+
+    if (house.isHouse == 0)
+    {
+      cardDiv.setAttribute("data-type", "rent");
+    }
+  
+    const imgHouse = document.createElement("img");
+    imgHouse.src = house.HouseImage; // example: "images/modern_home.jpg"
+    imgHouse.alt = "House";
+  
+    const propertyInfo = document.createElement("div");
+    propertyInfo.className = "property-info";
+  
+    const title = document.createElement("h3");
+    title.textContent = house.houseName;
+  
+    const location = document.createElement("p");
+    location.textContent = `📍 ${house.houseLocation}`;
+  
+    const divider = document.createElement("div");
+    divider.className = "divider";
+  
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = house.housePrice;
+  
+    const bookmark = document.createElement("span");
+    bookmark.className = "favorite";
+    bookmark.textContent = "❤️";
+  
+    // Assemble structure
+    propertyInfo.appendChild(title);
+    propertyInfo.appendChild(location);
+    propertyInfo.appendChild(divider);
+    propertyInfo.appendChild(price);
+    propertyInfo.appendChild(bookmark);
+  
+    cardDiv.appendChild(imgHouse);
+    cardDiv.appendChild(propertyInfo);
+  
+    return cardDiv;
+  }
+
+
+// Refresh Cards
+function RefreshCardRent()
+{
+    const cards = document.querySelectorAll(".property-card")
+
+    cards.forEach((card) =>{
+      if(card.dataset.type == "rent")
+      {
+        card.style.display = "block";
+        console.log("this card has rental")
+      }
+      else {
+        card.style.display = "none";
+      }
+      
+
+
+    })
 }
 
 function wireTabs() {

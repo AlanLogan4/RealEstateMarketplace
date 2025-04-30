@@ -59,7 +59,7 @@ function render() {
   }
 
   // update heading
-  const titles = { all: "YOUR HOMES", rent: "YOUR RENTALS", sell: "FOR SALE" };
+  const titles = { all: "YOUR HOMES", rent: "RENTALS", sell: "FOR SALE" };
   document.querySelector(".homes-title").textContent = titles[currentMode];
 
   // render cards
@@ -72,8 +72,8 @@ function render() {
         <img src="${img}" alt="${item.houseName}" />
         <div class="property-overlay">
           <h3>${item.houseName}</h3>
-          <p class="location">📌${item.houseLocation}</p>
-          <p class="price"> $${item.housePrice}</p>
+          <p class="location">${item.houseLocation}</p>
+          <p class="price">${item.housePrice}</p>
         </div>
       </div>`;
       })
@@ -117,13 +117,8 @@ function wirePrice() {
 
 function wireAccount() {
   document.getElementById("accountButton").addEventListener("click", () => {
-    window.location.href = "/Pages/BuyerAccount.html";
+    window.location.href = "/Pages/SellerAccount.html";
   });
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-document.getElementById("logout").addEventListener("click", function () {
-  localStorage.removeItem("token"); // Remove token from local storage
-  window.location.href = "/Pages/logIn.html"; // Redirect to login page
-});
