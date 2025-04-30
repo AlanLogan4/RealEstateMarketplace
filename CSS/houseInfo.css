@@ -53,35 +53,36 @@ body {
 
 /* House Image */
 .house-image {
-  flex: 2; /* BIGGER now */
+  flex: 3; /* BIGGER now */
   display: flex;
   justify-content: center;
 }
 
 .house-image img {
   width: 100%;
-  max-width: 600px; /* increase image max width */
+  max-width: 100%; /* increase image max width */
   border-radius: 15px;
   object-fit: cover;
 }
 
 /* House Info */
 .house-info {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center; /* This keeps it centered inside */
-  margin-top: 50px; /* <-- move it downward more */
+  margin-top: 15px; /* <-- move it downward more */
 }
 
 .house-info h2 {
   margin-top: 0;
-  font-size: 2rem;
+  margin-bottom: 10px;
+  font-size: 4rem;
   font-weight: 700;
 }
 
 .house-info p {
-  margin: 10px 0;
+  margin: 8px 0;
   font-size: 1.1rem;
 }
 
@@ -102,4 +103,20 @@ body {
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.buyButton {
+  margin-top: 25px;
+  padding: 10px 100px;
+  background-color: #66CCFF; /* orange */
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  text-align: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 0px solid #007acc; 
+  flex: flexbox;
 }
