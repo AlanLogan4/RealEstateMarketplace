@@ -27,7 +27,7 @@ thumbs.forEach(thumb => {
 
 
   
-async function  main()
+async function main()
 {
     // Get the current URL
     var currentUrl = window.location.href;
@@ -36,14 +36,35 @@ async function  main()
     var id = currentUrl.match(/id=(\d+)/)[1];
 
     // Use the ID to fetch data from the API
-    fetch('https://api.example.com/house/' + id)
+    const house = await GetHouseInfo(id)
+
+
+
+}
+
+
+
+function DisplayHouseInfo(house) {
+    // Populate the HTML with the fetched data
+    document.getElementById('mainImage').src = house.mainImage;
+    document.getElementById('title').innerText = house.title;
+    document.getElementById('description').innerText = house.description;
+    document.getElementById('price').innerText = '$' + house.price;
+}
+async function GetHouseInfo(id) {
+    // Use the ID to fetch data from the API
+    fetch('https://localhost:5139/api/properties/get/' + id)
         .then(response => response.json())
         .then(data => {
-            // Populate the HTML with the fetched data
-            document.getElementById('mainImage').src = data.mainImage;
-            document.getElementById('title').innerText = data.title;
-            document.getElementById('description').innerText = data.description;
-            document.getElementById('price').innerText = '$' + data.price;
+            // Assuming the API returns an object with the house data
+            const house = {
+                mainImage: data.mainImage,
+                title: data.title,
+                description: data.description,
+                price: data.price
+            };
+            DisplayHouseInfo(house);
         })
+
         .catch(error => console.error('Error fetching data:', error));
 }
