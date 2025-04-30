@@ -58,13 +58,33 @@ coverImageInput.addEventListener("change", function () {
   }
 });
 
+// Form submission
 document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent default form submission
+  e.preventDefault();
 
   const form = e.target;
-  const formData = new FormData(form);
+  const formData = new FormData();
 
-  fetch("/your-api-endpoint", {
+  // Create property object from form fields
+  const property = {
+    address: document.getElementById("propertyAddress").value,
+    price: parseFloat(document.getElementById("propertyPrice").value),
+    // Add other fields as needed
+  };
+
+  // Append property JSON
+  formData.append("propertyJson", JSON.stringify(property));
+
+
+  // Append selected files
+  const fileInput = document.getElementById("file-input"); // your file input id
+  for (const file of fileInput.files) {
+    console.log(file.name);
+    formData.append("images", file); // "images" must match your C# parameter name
+  }
+  console.log("FormData:", formData);
+  // Send it
+  fetch("http://localhost:5139/api/properties/add", {
     method: "POST",
     body: formData,
   })

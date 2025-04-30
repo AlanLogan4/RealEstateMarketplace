@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Seller Account</title>
     <link rel="stylesheet" href="/CSS/SellerStyle.css" />
+
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
@@ -14,11 +16,10 @@
     <!-- Navbar -->
     <header class="navbar">
       <!-- Left: Logo Box -->
-       <a href="/Pages/index.html">
-         <div class="logo" ></div>
+      <a href="/Pages/index.html" class="logo-link">
+        <div class="logo"></div>
+      </a>
 
-       </a>
-       
       <div class="top-filters">
         <!-- Search Bar -->
         <div class="search-bar-custom">
@@ -36,10 +37,10 @@
       </div>
 
       <!-- Account Icon & Text -->
-      <div class="account">
+      <a href="/Pages/logIn.html" class="account">
         <div class="avatar-small"></div>
         <span>Account</span>
-      </div>
+      </a>
     </header>
 
     <!-- Seller Profile Section -->
@@ -47,8 +48,11 @@
       <div class="seller-avatar"></div>
       <div class="seller-details">
         <p class="bold-label">Account:</p>
-        <p>example12@gmail.com</p>
+        <p id="userEmail">example12@gmail.com</p>
         <p class="bold-label">Cell Phone:</p>
+      </div>
+      <div class="logout-container">
+        <button id="logout">Log Out</button>
       </div>
     </section>
 
@@ -57,12 +61,15 @@
 
     <!-- Homes Title -->
     <h2 class="homes-title">YOUR HOMES</h2>
+    <a href="/Pages/createPropertyPost.html">
+      <div class="createPost"><button>Create Post</button></div>
+    </a>
 
     <!-- Property Grid -->
     <section class="property-grid">
       <!-- Card Example #1 -->
       <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
+        <img src="/images/housePic.jpg" alt="House Example" />
         <div class="property-overlay">
           <span class="bookmark">🔖</span>
           <h3>HOUSE</h3>
@@ -73,7 +80,7 @@
 
       <!-- Copy/Paste more property-cards as needed -->
       <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
+        <img src="/images/housePic.jpg" alt="House Example" />
         <div class="property-overlay">
           <span class="bookmark">🔖</span>
           <h3>HOUSE</h3>
@@ -83,7 +90,7 @@
       </div>
 
       <div class="property-card">
-        <img src="house1.jpg" alt="House Example" />
+        <img src="/images/housePic.jpg" alt="House Example" />
         <div class="property-overlay">
           <span class="bookmark">🔖</span>
           <h3>HOUSE</h3>
@@ -93,5 +100,9 @@
       </div>
       <!-- Add as many as you need -->
     </section>
+    <div id="propertyList"></div>
+
+
   </body>
+  <script src="/JS/sellerPage.js"></script>
 </html>

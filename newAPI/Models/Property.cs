@@ -12,6 +12,7 @@ namespace RealEstate.Models
         public string ImageUrl { get; set; }
         public int RealtorId { get; set; }
         public string Location { get; set; }
+        public List<string> ImageFileNames { get; set; } = new();
     }
 
 }

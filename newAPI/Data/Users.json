@@ -26,5 +26,12 @@
     "Email": "wasd@gmail.com",
     "Role": "seller",
     "Password": "123"
+  },
+  {
+    "Id": 5,
+    "Username": "norma",
+    "Email": "wasd@gmail.com",
+    "Role": "buyer",
+    "Password": "123"
   }
 ]

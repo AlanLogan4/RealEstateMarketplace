@@ -4,34 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drop Multiple Images</title>
-    <link
-      rel="stylesheet"
-      href="/RealEstateMarketplace/CSS/createPorpertyPost.css"
-    />
-    <link rel="stylesheet" href="/RealEstateMarketplace/CSS/style.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="stylesheet" href="/CSS/createPorpertyPost.css" />
   </head>
   <body>
+    <!-- NAVBAR -->
     <header class="navbar">
-        <a href="index.html">
-            <div class="logo"></div>
-          </a>
-      <div class="search-bar">
-        <input type="text" placeholder="Search..." />
-        <button>🔍</button>
-      </div>
-      <div class="nav-buttons">
-        <button class="active">Buy</button>
-        <button>Rent</button>
-        <button>Favorites</button>
-      </div>
-      <a href="/RealEstateMarketplace/Pages/logIn.html">
-        <div class="account">
-          <div class="avatar"></div>
-          <span>Account</span>
-        </div>
+      <a href="/Pages/index.html" class="logo-link">
+        <div class="logo"></div>
+      </a>
+
+      <a href="/Pages/logIn.html" class="account">
+        <div class="avatar-small"></div>
+        <span>Account</span>
       </a>
     </header>
-    <form action="" id="prpertyPost">
+
+    <form action="" id="prpertyPost" class="propertyPost">
+      <div class="close-button">
+        <a href="/Pages/login.html">
+          X
+        </a>
+      </div>
       <h2>Propterty Type</h2>
       <label for="House">Property Type</label>
       <div class="inline-group">
@@ -118,6 +112,6 @@
       <button type="submit">Add Property</button>
     </form>
 
-    <script src="/RealEstateMarketplace/JS/createPropertyPost.js"></script>
+    <script src="/JS/createPropertyPost.js"></script>
   </body>
 </html>
