@@ -1,77 +1,77 @@
+main();
 
+// Swap the main image when a thumbnail is clicked
+const mainImage = document.getElementById("mainImage");
+const thumbs = document.querySelectorAll(".thumbnail");
 
+thumbs.forEach((thumb) => {
+  thumb.addEventListener("click", () => {
+    // Update main image src
+    const largeSrc = thumb.getAttribute("src");
+    const mainImageSrc = mainImage.getAttribute("src");
+    mainImage.src = largeSrc;
+    thumb.src = mainImageSrc;
 
-function main()
-{
-    const house = GetHouseInfo()
+    // Toggle active class
+    document.querySelector(".thumbnail.active").classList.remove("active");
+    thumb.classList.add("active");
+  });
+});
 
-    BuildHouseCard()
+async function main() {
+  // Get the current URL
+  // var currentUrl = window.location.href;
 
-    
+  // Extract the ID from the URL using regex
+  var id = localStorage.getItem("selectedHouse");
+  console.log(id);
+  console.log("http://localhost:5139/api/properties/" + id);
 
+  // Use the ID to fetch data from the API
+  const house = await GetHouseInfo(id);
+
+  await DisplayHouseInfo(house);
 }
 
-function BuildHouseCard(house) {
-    // Create main section
-    const section = document.querySelector(".house-detail")
-    section.classList.add("house-detail");
-  
-    // Create house-image div
-    const houseImageDiv = document.createElement("div");
-    houseImageDiv.classList.add("house-image");
-  
-    const img = document.createElement("img");
-    img.src = house.image; // <--- dynamic image
-    img.alt = "House";
-    img.style.width = "100%";
-    img.style.borderRadius = "10px";
-    img.style.objectFit = "cover";
-  
-    houseImageDiv.appendChild(img);
-  
-    // Create house-info div
-    const houseInfoDiv = document.createElement("div");
-    houseInfoDiv.classList.add("house-info");
-    houseInfoDiv.style.flex = "1";
-  
-    const h2 = document.createElement("h2");
-    h2.textContent = house.name; // <--- dynamic house name
-    houseInfoDiv.appendChild(h2);
-  
-    // Realtor
-    const realtorP = document.createElement("p");
-    realtorP.innerHTML = `<strong>Realtor:</strong> ${house.realtor}`;
-    houseInfoDiv.appendChild(realtorP);
-  
-    // Location
-    const locationP = document.createElement("p");
-    locationP.innerHTML = `<strong>Location:</strong> ${house.location}`;
-    houseInfoDiv.appendChild(locationP);
-  
-    // Description
-    const descriptionP = document.createElement("p");
-    descriptionP.innerHTML = `<strong>Description:</strong> ${house.description}`;
-    houseInfoDiv.appendChild(descriptionP);
-  
-    // Price
-    const priceP = document.createElement("p");
-    priceP.style.fontWeight = "bold";
-    priceP.style.marginTop = "20px";
-    priceP.innerHTML = `<strong>Price:</strong> $${house.price.toLocaleString()}`;
-    houseInfoDiv.appendChild(priceP);
-  
-    // Assemble everything
-    section.appendChild(houseImageDiv);
-    section.appendChild(houseInfoDiv);
-  
+function DisplayHouseInfo(house) {
+  for (let key in house) {
+    const el = document.getElementById(key);
+    if (el) el.textContent = data[key];
   }
-  
-      
+}
+async function GetHouseInfo(id) {
+  // Use the ID to fetch data from the API
+  const response = await fetch("http://localhost:5139/api/properties/" + id
+  , {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      // Add any other headers you need here
+    },
+  }
+  );
 
+  const property = await response.json()
 
+  console.log(property);
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   // Assuming the API returns an object with the house data
+    //   const house = {
+    //     Realtor: data.RealtorID,
+    //     Location: data.Address,
+    //     PropertySize: data.PropertySize,
+    //     NumberofRooms: data.NumberOfRooms,
+    //     year: data.Year,
+    //     NumberofBathrooms: data.NumberOfBathrooms,
+    //     Price: data.price,
+    //     Description: data.Description,
+    //     MainImage: data.CoverImage,
+    //     Propertytype: data.PropertyType,
+    //     // Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
+    //   };
+      // return house;
+    // })
 
-
-function GetHouseInfo()
-{
-
+    // .catch((error) => console.error("Error fetching data:", error));
 }

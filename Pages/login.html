@@ -4,8 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Login</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <link rel="stylesheet" href="/CSS/loginStyle.css" />
+    <link rel="stylesheet" href="/RealEstateMarketplace/CSS/style.css" />
+    <link rel="stylesheet" href="/RealEstateMarketplace/CSS/loginStyle.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
@@ -14,14 +14,23 @@
   <body>
     <!-- Navbar -->
     <header class="navbar">
-      <a href="/Pages/index.html">
+      <a href="index.html">
         <div class="logo"></div>
       </a>
-
-
-      <a href="/Pages/logIn.html" class="account">
-        <div class="avatar-small"></div>
-        <span>Account</span>
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button>🔍</button>
+      </div>
+      <div class="nav-buttons">
+        <button class="active">Buy</button>
+        <button>Rent</button>
+        <button>Favorites</button>
+      </div>
+      <a href="/RealEstateMarketplace/Pages/logIn.html">
+        <div class="account">
+          <div class="avatar"></div>
+          <span>Account</span>
+        </div>
       </a>
     </header>
 
@@ -30,10 +39,9 @@
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
-        <button type="submit">
-
+        <a href="/RealEstateMarketplace/Pages/createPropertyPost.html">
           Log In
-        </button>
+        </a>
       </form>
       <p id="message"></p>
       <div>
@@ -41,6 +49,6 @@
       </div>
     </div>
 
-    <script src="/JS/login.js"></script>
+    <script src="/RealEstateMarketplace/JS/login.js"></script>
   </body>
 </html>
