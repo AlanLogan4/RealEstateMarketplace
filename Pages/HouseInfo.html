@@ -1,52 +1,69 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>House Info</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/CSS/houseInfo.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <a href="/Pages/index.html">
-        <div class="logo"></div>
-      </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>House Info</title>
+  <link rel="stylesheet" href="/CSS/houseInfo.css"/>
+</head>
+<body>
+  <!-- header bar -->
+  <header class="site-header">
+    <div class="logo"></div>
+    <div class="account">
+      <span>Account:</span>
+      <div class="avatar"></div>
+    </div>
+  </header>
 
-      <a href="/Pages/logIn.html">
-        <div class="account">
-          <div class="avatar"></div>
-          <span>Account</span>
-        </div>
-      </a>
-    </header>
-
-    <section class="house-detail">
-      <div class="house-image">
+  <!-- main content -->
+  <main class="house-container">
+    <!-- image + thumbnails -->
+    <div class="image-gallery">
+      <img
+        id="mainImage"
+        class="main-image"
+        src="../json/modern home.jpg"
+        alt="House main view"
+      />
+      <div class="thumbnails">
         <img
+          class="thumbnail active"
           src="../json/modern home.jpg"
-          alt="House"
-        
+          data-large="https://via.placeholder.com/800x450"
+          alt="Thumbnail 1"
+        />
+        <img
+          class="thumbnail"
+          src="../json/back yardd.jpg"
+          data-large="https://via.placeholder.com/800x450?text=2"
+          alt="Thumbnail 2"
+        />
+        <img
+          class="thumbnail"
+          src="../json/modern home.jpg"
+          data-large="https://via.placeholder.com/800x450?text=3"
+          alt="Thumbnail 3"
         />
       </div>
-      <div class="house-info" style="flex: 2">
-        <h2>HOUSE NAME</h2>
-        <p><strong>Realtor:</strong> Realtor Name</p>
-        <p><strong>Location:</strong> Location Name</p>
-        <p>
-          <strong>Description:</strong> Short description about the house goes
-          here.
-        </p>
-        <p><strong>Year:</strong> 2008</p>
-        <p><strong>Room Count:</strong> 3</p>
-        <p id="price" style="font-weight: bold; font-size: 1.5em;">
-          <strong>Price:</strong> $123,456
-        </p>
-        <button class="buyButton">BUY</button>
-      </div>
+    </div>
+
+    <!-- details panel -->
+    <section class="details-card">
+      <div class="price-tag">PRICE: $350,000</div>
+      <dl class="details-grid">
+        <dt>Realtor:</dt><dd>John Doe</dd>
+        <dt>Location:</dt><dd>Springfield, IL</dd>
+        <dt>Property Size:</dt><dd>2,500 sqft</dd>
+        <dt>Number of Rooms:</dt><dd>4</dd>
+        <dt>Property Type:</dt><dd>House</dd>
+        <dt>Year:</dt><dd>2021</dd>
+        <dt>Bedrooms:</dt><dd>3</dd>
+        <dt>Bathrooms:</dt><dd>2</dd>
+        <dt>Description:</dt><dd>Charming family home on a quiet street.</dd>
+      </dl>
     </section>
-  </body>
+  </main>
+
+  <script src="../JS/houseInfo.js"></script>
+</body>
 </html>

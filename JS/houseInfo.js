@@ -1,77 +1,49 @@
 
 
 
-function main()
+
+
+
+
+
+// Swap the main image when a thumbnail is clicked
+const mainImage = document.getElementById('mainImage');
+const thumbs = document.querySelectorAll('.thumbnail');
+
+thumbs.forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    // Update main image src
+    const largeSrc = thumb.getAttribute('src');
+    const mainImageSrc = mainImage.getAttribute('src');
+    mainImage.src = largeSrc;
+    thumb.src = mainImageSrc;
+
+    // Toggle active class
+    document.querySelector('.thumbnail.active')
+            .classList.remove('active');
+    thumb.classList.add('active');
+  });
+});
+
+
+  
+async function  main()
 {
-    const house = GetHouseInfo()
+    // Get the current URL
+    var currentUrl = window.location.href;
 
-    BuildHouseCard()
+    // Extract the ID from the URL using regex
+    var id = currentUrl.match(/id=(\d+)/)[1];
 
-    
-
-}
-
-function BuildHouseCard(house) {
-    // Create main section
-    const section = document.querySelector(".house-detail")
-    section.classList.add("house-detail");
-  
-    // Create house-image div
-    const houseImageDiv = document.createElement("div");
-    houseImageDiv.classList.add("house-image");
-  
-    const img = document.createElement("img");
-    img.src = house.image; // <--- dynamic image
-    img.alt = "House";
-    img.style.width = "100%";
-    img.style.borderRadius = "10px";
-    img.style.objectFit = "cover";
-  
-    houseImageDiv.appendChild(img);
-  
-    // Create house-info div
-    const houseInfoDiv = document.createElement("div");
-    houseInfoDiv.classList.add("house-info");
-    houseInfoDiv.style.flex = "1";
-  
-    const h2 = document.createElement("h2");
-    h2.textContent = house.name; // <--- dynamic house name
-    houseInfoDiv.appendChild(h2);
-  
-    // Realtor
-    const realtorP = document.createElement("p");
-    realtorP.innerHTML = `<strong>Realtor:</strong> ${house.realtor}`;
-    houseInfoDiv.appendChild(realtorP);
-  
-    // Location
-    const locationP = document.createElement("p");
-    locationP.innerHTML = `<strong>Location:</strong> ${house.location}`;
-    houseInfoDiv.appendChild(locationP);
-  
-    // Description
-    const descriptionP = document.createElement("p");
-    descriptionP.innerHTML = `<strong>Description:</strong> ${house.description}`;
-    houseInfoDiv.appendChild(descriptionP);
-  
-    // Price
-    const priceP = document.createElement("p");
-    priceP.style.fontWeight = "bold";
-    priceP.style.marginTop = "20px";
-    priceP.innerHTML = `<strong>Price:</strong> $${house.price.toLocaleString()}`;
-    houseInfoDiv.appendChild(priceP);
-  
-    // Assemble everything
-    section.appendChild(houseImageDiv);
-    section.appendChild(houseInfoDiv);
-  
-  }
-  
-      
-
-
-
-
-function GetHouseInfo()
-{
-
+    // Use the ID to fetch data from the API
+    fetch('https://api.example.com/house/' + id)
+        .then(response => response.json())
+        .then(data => {
+            // Populate the HTML with the fetched data
+            document.getElementById('mainImage').src = data.mainImage;
+            document.getElementById('title').innerText = data.title;
+            document.getElementById('description').innerText = data.description;
+            document.getElementById('price').innerText = '$' + data.price;
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }

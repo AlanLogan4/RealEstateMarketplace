@@ -1,122 +1,143 @@
-body {
-  font-family: 'Inter', sans-serif;
+:root {
+  --brand-blue: #0058e4;
+  --accent-green: #008000;
+  --light-gray: #f5f5f5;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.4;
+  background: #fff;
+  color: #222;
+}
+
+/* Header */
+.site-header {
+  background: var(--brand-blue);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+}
+.site-header .logo {
+  width: 50px; height: 40px;
+  background: #ccc;
+}
+.site-header .account {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.site-header .avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
   background: #fff;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #0066cc;
-  padding: 10px 20px;
-  color: white;
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
-  background: gray;
-  border-radius: 5px;
-}
-
-/* Account */
-.account {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-right: 5vh;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 50%;
-}
-
-/* House Detail Section */
-.house-detail {
-  background: white;
-  margin: 15vh auto;
-  padding: 30px;
-  width: 90%;
+/* Main layout */
+.house-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  padding: 2rem;
   max-width: 1200px;
-  border-radius: 15px;
-  display: flex;
-  gap: 50px;
-  align-items: flex-start;
-  justify-content: center;
+  margin: auto;
+  margin-top: 7rem;
 }
 
-/* House Image */
-.house-image {
-  flex: 3; /* BIGGER now */
+/* Image gallery */
+.image-gallery {
   display: flex;
-  justify-content: center;
+  flex: 3;
+  flex-direction: column;
+  gap: 1rem;
 }
-
-.house-image img {
+.main-image {
+  /* display: flex; */
+  /* flex: 2; */
   width: 100%;
-  max-width: 100%; /* increase image max width */
-  border-radius: 15px;
-  object-fit: cover;
+  border-radius: 12px;
+  /* width: 50%;       desired fixed width */
+  height: 100%;      /* desired fixed height */
+  object-fit:contain;  /* or `contain` depending on whether you want it cropped or letter-boxed */
+  display: block;
+}
+.thumbnails {
+  display: flex;
+  gap: 1rem;
+}
+.thumbnail {
+  flex: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 2.625rem;     
+  height: 7.813rem;      
+  object-fit:cover;  
+  display: block; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.thumbnail.active {
+  outline: 3px solid var(--brand-blue);
 }
 
-/* House Info */
-.house-info {
-  flex: 2;
+/* Details panel */
+.details-card {
+  background: var(--light-gray);
+  padding: 2rem;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* This keeps it centered inside */
-  margin-top: 15px; /* <-- move it downward more */
+  gap: 1.5rem;
+  /* width: 100%; */
 }
-
-.house-info h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 4rem;
-  font-weight: 700;
-}
-
-.house-info p {
-  margin: 8px 0;
-  font-size: 1.1rem;
-}
-
-.house-info p strong {
+.price-tag {
+  font-size: 2rem;
   font-weight: bold;
+  color: var(--accent-green);
+}
+.details-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.75rem 1.5rem;
+}
+.details-grid dt {
+  font-weight: 500;
+}
+.details-grid dd {
+  margin: 0;
+  font-weight: 600;
 }
 
-.price {
-  margin-top: 30px;
-  padding: 10px 20px;
-  background-color: #66ccff; /* light blue */
-  color: white;
+/* CTA Button */
+.cta {
+  align-self: start;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 1.3rem;
-  border-radius: 10px;
-  text-align: center;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: var(--brand-blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.buyButton {
-  margin-top: 25px;
-  padding: 10px 100px;
-  background-color: #66CCFF; /* orange */
-  color: white;
-  font-weight: bold;
-  font-size: 1.3rem;
-  border-radius: 10px;
-  text-align: center;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border: 0px solid #007acc; 
-  flex: flexbox;
+.cta:hover {
+  background: #0041b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .house-container {
+    grid-template-columns: 1fr;
+  }
 }
