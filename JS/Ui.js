@@ -31,8 +31,8 @@ async function main() {
 function BuildCard(house) {
   const card = document.createElement("div");
   card.addEventListener("click", () => {
-    console.log("Card clicked:", house.houseName);
-    localStorage.setItem("selectedHouse", JSON.stringify(house));
+    console.log("Card clicked:", house.id);
+    localStorage.setItem("selectedHouse", JSON.stringify(1));
     window.location.href = "/Pages/Houseinfo.html";
   });
   card.className = "property-card";
