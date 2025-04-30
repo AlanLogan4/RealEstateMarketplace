@@ -7,6 +7,8 @@ let locationTerm = ""; // text filter for location
 let maxPrice = NaN;
 let searchTerm = ""; // numeric filter for price
 
+LoadEmail()
+
 async function init() {
   try {
     const res = await fetch(JSON_PATH);
@@ -127,3 +129,10 @@ document.getElementById("logout").addEventListener("click", function () {
   localStorage.removeItem("token"); // Remove token from local storage
   window.location.href = "/Pages/logIn.html"; // Redirect to login page
 });
+
+function LoadEmail() {
+  const email = document.getElementById("userEmail");
+  const token = localStorage.getItem("token");
+  const currentUser = JSON.parse(token);
+  email.textContent = currentUser.email;
+}

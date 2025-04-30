@@ -17,7 +17,6 @@ async function init() {
     wireSearch(); // Couple/Single/Family
     wireLocation(); // locationInput
     wirePrice(); // priceInput
-    wireAccount(); // accountButton
 
     render(); // initial display
   } catch (e) {
@@ -115,10 +114,5 @@ function wirePrice() {
   });
 }
 
-function wireAccount() {
-  document.getElementById("accountButton").addEventListener("click", () => {
-    window.location.href = "/Pages/SellerAccount.html";
-  });
-}
 
 document.addEventListener("DOMContentLoaded", init);

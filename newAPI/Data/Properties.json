@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "Id": 1,
+    "Price": 123.0,
+    "Address": "123",
+    "Year": 123,
+    "RealtorID": 3,
+    "NumberOfRooms": 123,
+    "NumberOfBathrooms": 123,
+    "Description": "123",
+    "PropertySize": 123,
+    "PropertyType": "house",
+    "PropertyImages": [
+      "2c70fc21-fc8b-48c0-a117-39aa49d39d10.jpg",
+      "a17d4701-a4eb-481f-9039-dd6ff4f133f6.jpg",
+      "f2399ab3-2508-42fc-87af-68a6e16edb5b.jpg"
+    ],
+    "CoverImage": "d80caa5c-07f5-4e14-b0b5-301a902f8743.jpg"
+  }
+]

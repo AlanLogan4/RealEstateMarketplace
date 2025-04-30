@@ -58,22 +58,62 @@ coverImageInput.addEventListener("change", function () {
   }
 });
 
-document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent default form submission
+// Form submission
+document.getElementById("propertyPost").addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
 
-  fetch("/your-api-endpoint", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      alert("Property submitted successfully!");
-      console.log(data);
-    })
-    .catch((err) => {
-      console.error("Error:", err);
+  const token = localStorage.getItem("token");
+  const currentUser = JSON.parse(token);
+  const formData = new FormData();
+
+  // Collect all property data
+  const property = {
+    Price: parseFloat(document.getElementById("propertyPrice").value),
+    Address: document.getElementById("propertyAddress").value,
+    Year: parseInt(document.getElementById("year").value),
+    RealtorID: currentUser.id,
+    NumberOfRooms: parseInt(document.getElementById("numRooms").value),
+    NumberOfBathrooms: parseInt(document.getElementById("numBaths").value),
+    Description: document.getElementById("description").value,
+    PropertySize: parseInt(document.getElementById("propertyTerrain").value),
+    PropertyType: document.querySelector("input[name='typeOfProperty']:checked").value,
+    PropertyImages: [] // server will fill this
+  };
+
+  // Add the cover image
+  const coverImage = document.getElementById("coverImage").files[0];
+  if (coverImage) {
+    formData.append("coverImage", coverImage);
+  }
+
+  // Add other dropped images
+  const additionalImages = document.getElementById("file-input").files;
+  for (const file of additionalImages) {
+    formData.append("images", file); // append each image as 'images'
+  }
+
+  // Add the full property object as JSON string
+  formData.append("propertyJson", JSON.stringify(property));
+
+  // 🔥 Send it to the API
+  try {
+    const response = await fetch("http://localhost:5139/api/properties/add", {
+      method: "POST",
+      body: formData,
     });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("Property added successfully!");
+      console.log(result);
+      // Optionally redirect or reset form
+    } else {
+      alert(result.message || "Failed to add property.");
+    }
+  } catch (err) {
+    console.error("Error submitting property:", err);
+    alert("Server error.");
+  }
 });

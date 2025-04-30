@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seller Account</title>
-    <link rel="stylesheet" href="/CSS/BuyerStyle.css" />
+    <link rel="stylesheet" href="/CSS/SellerStyle.css" />
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
@@ -13,9 +14,11 @@
   <body>
     <!-- NAVBAR -->
     <header class="navbar">
+      <!-- Left: Logo Box -->
       <a href="/Pages/index.html" class="logo-link">
         <div class="logo"></div>
       </a>
+
       <div class="top-filters">
         <!-- Search Bar -->
         <div class="search-bar-custom">
@@ -45,10 +48,11 @@
         </div>
       </div>
 
-      <div class="account" id="accountButton">
+      <!-- Account Icon & Text -->
+      <a href="/Pages/logIn.html" class="account">
         <div class="avatar-small"></div>
         <span>Account</span>
-      </div>
+      </a>
     </header>
 
     <!-- PROFILE INFO -->
@@ -56,8 +60,11 @@
       <div class="seller-avatar"></div>
       <div class="seller-details">
         <p class="bold-label">Account:</p>
-        <p>example12@gmail.com</p>
+        <p id="userEmail">example12@gmail.com</p>
         <p class="bold-label">Cell Phone:</p>
+      </div>
+      <div class="logout-container">
+        <button id="logout">Log Out</button>
       </div>
     </section>
 
@@ -65,6 +72,9 @@
 
     <!-- DYNAMIC TITLE -->
     <h2 class="homes-title">YOUR HOMES</h2>
+    <a href="/Pages/createPropertyPost.html">
+      <div class="createPost"><button>Create Post</button></div>
+    </a>
 
     <!-- PROPERTY GRID -->
     <section class="property-grid">
@@ -72,5 +82,6 @@
     </section>
 
     <script type="module" src="/JS/seller.js"></script>
+    <script src="/JS/sellerPage.js"></script>
   </body>
 </html>

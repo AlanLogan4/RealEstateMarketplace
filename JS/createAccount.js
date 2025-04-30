@@ -1,9 +1,9 @@
 const storedData = localStorage.getItem("token");
 if (storedData) {
   const currentUser = JSON.parse(storedData);
-  console.log(currentUser.user.role);
+  console.log(currentUser.role);
 
-  if (currentUser.user.role === "buyer") {
+  if (currentUser.role === "buyer") {
     window.location.href = "/Pages/BuyerAccount.html";
   } else if (currentUser.user.role === "seller") {
     window.location.href = "/Pages/SellerAccount.html";
