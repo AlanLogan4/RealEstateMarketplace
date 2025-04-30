@@ -9,8 +9,20 @@ namespace RealEstate.Controllers;
 [Route("api/[controller]")]
 public class PropertiesController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("get")]
     public IActionResult GetAll() => Ok(DataStore.Properties);
+
+    [HttpGet("{id}")]
+    public IActionResult GetPropertyById(int id)
+    {
+        var property = DataStore.Properties.FirstOrDefault(p => p.Id == id);
+        if (property == null)
+        {
+            return NotFound(new { message = $"Property with ID {id} not found." });
+        }
+
+        return Ok(property);
+    }
 
     [HttpPost("add")]
     public async Task<IActionResult> AddProperty([FromForm] string propertyJson, [FromForm] IFormFile coverImage, [FromForm] List<IFormFile> images)
