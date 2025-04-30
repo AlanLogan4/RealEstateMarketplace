@@ -58,10 +58,18 @@ async function GetHouseInfo(id) {
         .then(data => {
             // Assuming the API returns an object with the house data
             const house = {
-                mainImage: data.mainImage,
-                title: data.title,
-                description: data.description,
-                price: data.price
+              Realtor: data.RealtorID,
+              Location: data.Address,
+              PropertySize: data.PropertySize,
+              NumberofRooms: data.NumberOfRooms,
+              year: data.Year,
+              NumberofBathrooms: data.NumberOfBathrooms,
+              Price: data.price,
+              Description: data.Description,
+              MainImage: data.CoverImage,
+              Propertytype: data.PropertyType,
+              Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
+
             };
             DisplayHouseInfo(house);
         })
