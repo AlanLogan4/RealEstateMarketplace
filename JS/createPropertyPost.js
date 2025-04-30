@@ -59,41 +59,61 @@ coverImageInput.addEventListener("change", function () {
 });
 
 // Form submission
-document.querySelector("form").addEventListener("submit", function (e) {
+document.getElementById("propertyPost").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const form = e.target;
+
+  const token = localStorage.getItem("token");
+  const currentUser = JSON.parse(token);
   const formData = new FormData();
 
-  // Create property object from form fields
+  // Collect all property data
   const property = {
-    address: document.getElementById("propertyAddress").value,
-    price: parseFloat(document.getElementById("propertyPrice").value),
-    // Add other fields as needed
+    Price: parseFloat(document.getElementById("propertyPrice").value),
+    Address: document.getElementById("propertyAddress").value,
+    Year: parseInt(document.getElementById("year").value),
+    RealtorID: currentUser.id,
+    NumberOfRooms: parseInt(document.getElementById("numRooms").value),
+    NumberOfBathrooms: parseInt(document.getElementById("numBaths").value),
+    Description: document.getElementById("description").value,
+    PropertySize: parseInt(document.getElementById("propertyTerrain").value),
+    PropertyType: document.querySelector("input[name='typeOfProperty']:checked").value,
+    PropertyImages: [] // server will fill this
   };
 
-  // Append property JSON
+  // Add the cover image
+  const coverImage = document.getElementById("coverImage").files[0];
+  if (coverImage) {
+    formData.append("coverImage", coverImage);
+  }
+
+  // Add other dropped images
+  const additionalImages = document.getElementById("file-input").files;
+  for (const file of additionalImages) {
+    formData.append("images", file); // append each image as 'images'
+  }
+
+  // Add the full property object as JSON string
   formData.append("propertyJson", JSON.stringify(property));
 
-
-  // Append selected files
-  const fileInput = document.getElementById("file-input"); // your file input id
-  for (const file of fileInput.files) {
-    console.log(file.name);
-    formData.append("images", file); // "images" must match your C# parameter name
-  }
-  console.log("FormData:", formData);
-  // Send it
-  fetch("http://localhost:5139/api/properties/add", {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      alert("Property submitted successfully!");
-      console.log(data);
-    })
-    .catch((err) => {
-      console.error("Error:", err);
+  // 🔥 Send it to the API
+  try {
+    const response = await fetch("http://localhost:5139/api/properties/add", {
+      method: "POST",
+      body: formData,
     });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("Property added successfully!");
+      console.log(result);
+      // Optionally redirect or reset form
+    } else {
+      alert(result.message || "Failed to add property.");
+    }
+  } catch (err) {
+    console.error("Error submitting property:", err);
+    alert("Server error.");
+  }
 });

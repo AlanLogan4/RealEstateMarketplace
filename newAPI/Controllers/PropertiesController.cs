@@ -13,7 +13,7 @@ public class PropertiesController : ControllerBase
     public IActionResult GetAll() => Ok(DataStore.Properties);
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddProperty([FromForm] string propertyJson, [FromForm] List<IFormFile> images)
+    public async Task<IActionResult> AddProperty([FromForm] string propertyJson, [FromForm] IFormFile coverImage, [FromForm] List<IFormFile> images)
     {
         var property = JsonConvert.DeserializeObject<Property>(propertyJson);
 
@@ -26,6 +26,16 @@ public class PropertiesController : ControllerBase
         {
             Directory.CreateDirectory(uploadsFolder);
         }
+        if (coverImage != null)
+        {
+            var coverFileName = Guid.NewGuid() + Path.GetExtension(coverImage.FileName);
+            var coverPath = Path.Combine(uploadsFolder, coverFileName);
+            using (var stream = new FileStream(coverPath, FileMode.Create))
+            {
+                await coverImage.CopyToAsync(stream);
+            }
+            property.CoverImage = coverFileName;
+        }
 
         foreach (var image in images)
         {
@@ -37,7 +47,7 @@ public class PropertiesController : ControllerBase
                 await image.CopyToAsync(stream);
             }
 
-            property.ImageFileNames.Add(uniqueFileName);
+            property.PropertyImages.Add(uniqueFileName);
         }
 
         DataStore.Properties.Add(property);

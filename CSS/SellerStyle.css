@@ -4,13 +4,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-<<<<<<< HEAD
 a {
   text-decoration: none;
 }
 
-=======
->>>>>>> 43410e56689842566ebf7c9b93e7195ac058793d
 body {
   font-family: 'Inter', sans-serif;
   background: #fff;
@@ -30,13 +27,9 @@ body {
 .logo {
   width: 50px;
   height: 50px;
-<<<<<<< HEAD
   background-image: url("/images/logo.png");
   background-size: cover;
   background-position: center;
-=======
-  background: #ccc;
->>>>>>> 43410e56689842566ebf7c9b93e7195ac058793d
   border-radius: 5px;
 }
 
@@ -220,7 +213,6 @@ body {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
 .createPost {
   display: flex;
   justify-content: center;
@@ -270,7 +262,6 @@ body {
   color:black;
   transition: background-color 0.3s ease;
 }
-=======
 /* ================= RESPONSIVE LAYOUT ================= */
 @media (max-width: 768px) {
   .top-filters {
@@ -298,5 +289,5 @@ body {
     padding: 8px 0;
     margin: 0 4px;
   }
+  
 }
->>>>>>> 43410e56689842566ebf7c9b93e7195ac058793d

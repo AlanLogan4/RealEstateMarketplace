@@ -1,158 +1,20 @@
 [
   {
     "Id": 1,
-    "Title": null,
-    "Description": null,
     "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "5f6b5930-2a8a-41b4-b346-76ad6c53db60.jpg",
-      "79cf79f6-a1e3-4512-b0b4-ed7676cb6ab7.jpg",
-      "4bee44d8-8062-4cdc-990c-60d58eb110e9.jpg",
-      "d8bdbfe4-c63a-44ed-9e40-a94e444bd52a.jpg",
-      "7e7c3161-68ee-41bc-8fca-7eb939e6d11a.jpg"
-    ]
-  },
-  {
-    "Id": 2,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "3d2a0e4f-5bcf-44d7-905a-aecfeff29a1a.jpg",
-      "c5c9fa69-ba0b-4f8b-bff7-91a03235ae94.jpg"
-    ]
-  },
-  {
-    "Id": 3,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "5c82116f-e627-496d-bbee-fc95723c5521.jpg",
-      "e43d1ac8-2218-4f75-a7f7-dc24b298d817.jpg",
-      "cfea9b8e-c881-4929-a033-4e8c9a251022.jpg",
-      "588d5b95-defb-4338-97bd-4ad7c841b4aa.jpg",
-      "d288ddec-bae2-4d34-b3ba-91163717921d.jpg"
-    ]
-  },
-  {
-    "Id": 4,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "98764f53-64cb-4040-b40a-e376d0ad9ecd.jpg",
-      "0f73dc55-9e8c-4984-9f7d-f85fe96a2bf6.jpg",
-      "af6e7215-4357-4aa8-bfa2-aa47eee61d03.jpg",
-      "20c2f137-f96a-4c3f-bec9-be8f93b46bab.jpg",
-      "82e51f05-0d20-4056-95dc-841af9c2ce01.jpg"
-    ]
-  },
-  {
-    "Id": 5,
-    "Title": null,
-    "Description": null,
-    "Price": 123123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "c081f9c9-b9d8-4613-b342-f30209d6a13c.jpg",
-      "ab5aba9a-8720-4867-b048-635ee04b4fae.jpg",
-      "7fa2c2d7-4bf8-4f00-beac-d39507a8831b.jpg",
-      "3b15ac0a-c4eb-41e4-861f-b0adc42b3fd9.jpg",
-      "1e0b5ef6-9bc7-4992-a20c-af0056db182d.jpg"
-    ]
-  },
-  {
-    "Id": 6,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "8817e5fb-3eae-40da-bd6f-9e6bef063cc5.jpg",
-      "31f80d04-4074-4fb1-85cf-00e9e48aec2a.jpg",
-      "a5b59b73-a5e7-4ba7-a603-32c0d5984b91.jpg",
-      "f47981da-22a0-4bdf-b15d-0f06d9d93978.jpg",
-      "710bc577-94f2-4871-96b2-0afd2811c9a3.jpg"
-    ]
-  },
-  {
-    "Id": 7,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "3decd9c0-eb47-4728-b463-10a335f8e759.jpg",
-      "2400a3ea-279a-437b-b4f3-f159c9385683.jpg",
-      "b2ea87b5-5285-4567-b219-7de329fb5bfc.jpg",
-      "49174c9f-f0ae-485b-b757-e077888d8ead.jpg",
-      "60df07a7-6123-4ef8-a5f3-ee1211103f30.jpg"
-    ]
-  },
-  {
-    "Id": 8,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "92c8ceb6-6f13-4308-b6ad-b8efe32c90e7.jpg",
-      "86e22080-5e46-4964-9c44-ad1734bd5257.jpg",
-      "dc122bef-54b7-46dd-91de-3b1a7352118d.jpg",
-      "94ed12f2-a59f-408f-b8b2-ca7c2db4ac61.jpg",
-      "5dc51f92-206d-4ddb-905e-daa82725d9e2.jpg"
-    ]
-  },
-  {
-    "Id": 9,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "c5887ad9-9b01-4f4d-b0ab-a45af5ab4487.jpg",
-      "f78361cb-ff16-4a16-b43d-6b01a6e6ae33.jpg",
-      "e4bd2e46-26a2-45a5-89c3-82e23ff66e5e.jpg",
-      "61cc4cf9-59fa-4af7-84e6-8584b5da7c90.jpg",
-      "96a1ea8c-2901-4170-a36c-ecb3c138b92b.jpg"
-    ]
-  },
-  {
-    "Id": 10,
-    "Title": null,
-    "Description": null,
-    "Price": 123.0,
-    "ImageUrl": null,
-    "RealtorId": 0,
-    "Location": null,
-    "ImageFileNames": [
-      "7d04a250-119b-4920-aebc-4f5caed369f6.jpg",
-      "c2936a2f-be10-4531-87f3-6b382e79715b.jpg",
-      "c304400a-aed9-41cd-a02c-c297d6b55e93.jpg",
-      "d8782b07-f5bc-4ff2-9717-56846aa1c95f.jpg"
-    ]
+    "Address": "123",
+    "Year": 123,
+    "RealtorID": 3,
+    "NumberOfRooms": 123,
+    "NumberOfBathrooms": 123,
+    "Description": "123",
+    "PropertySize": 123,
+    "PropertyType": "house",
+    "PropertyImages": [
+      "2c70fc21-fc8b-48c0-a117-39aa49d39d10.jpg",
+      "a17d4701-a4eb-481f-9039-dd6ff4f133f6.jpg",
+      "f2399ab3-2508-42fc-87af-68a6e16edb5b.jpg"
+    ],
+    "CoverImage": "d80caa5c-07f5-4e14-b0b5-301a902f8743.jpg"
   }
 ]
