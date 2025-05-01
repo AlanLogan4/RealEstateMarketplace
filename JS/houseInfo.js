@@ -76,7 +76,6 @@ async function GetHouseInfo(id) {
 
   console.log(property);
   const house = {
-    Realtor: property.realtorID,
     Location: property.address,
     PropertySize: property.propertySize,
     NumberofRooms: property.numberOfRooms,
