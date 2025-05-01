@@ -1,20 +1,56 @@
 [
   {
     "Id": 1,
-    "Price": 123.0,
-    "Address": "123",
-    "Year": 123,
+    "Price": 300000.0,
+    "Address": "12 W 1400 E Provo, UT",
+    "Year": 2020,
     "RealtorID": 3,
-    "NumberOfRooms": 123,
-    "NumberOfBathrooms": 123,
-    "Description": "123",
-    "PropertySize": 123,
+    "NumberOfRooms": 3,
+    "NumberOfBathrooms": 2,
+    "Description": "Its nice",
+    "PropertySize": 20000,
     "PropertyType": "house",
     "PropertyImages": [
-      "2c70fc21-fc8b-48c0-a117-39aa49d39d10.jpg",
-      "a17d4701-a4eb-481f-9039-dd6ff4f133f6.jpg",
-      "f2399ab3-2508-42fc-87af-68a6e16edb5b.jpg"
+      "584a3039-622c-496b-8a8e-682cc1da5dd9.jpg",
+      "ce841389-8598-462f-8961-f57d0021c72f.jpg",
+      "a24697f8-792a-48f7-bdf7-00abdb9e33e0.jpg"
     ],
-    "CoverImage": "d80caa5c-07f5-4e14-b0b5-301a902f8743.jpg"
+    "CoverImage": "ac5abf08-18f5-49ff-895f-e07e9e7c7421.jpg"
+  },
+  {
+    "Id": 2,
+    "Price": 1000000.0,
+    "Address": "102 W 140 N Provo, UT",
+    "Year": 2024,
+    "RealtorID": 3,
+    "NumberOfRooms": 4,
+    "NumberOfBathrooms": 3,
+    "Description": "Its big and nice, and beutiful",
+    "PropertySize": 30000,
+    "PropertyType": "house",
+    "PropertyImages": [
+      "bda431ed-68e0-46ab-968e-e8dd492f6a5c.jpg",
+      "e77ab532-e86f-4a39-bb74-d6670da3fb10.jpg",
+      "d9da996b-d27f-4545-a220-a76e65669303.jpg"
+    ],
+    "CoverImage": "5871e177-9537-4b49-ac68-9ece2c5235e7.jpg"
+  },
+  {
+    "Id": 3,
+    "Price": 10000.0,
+    "Address": "120 S 1400 E Provo, UT",
+    "Year": 2005,
+    "RealtorID": 6,
+    "NumberOfRooms": 1,
+    "NumberOfBathrooms": 1,
+    "Description": "Its nice",
+    "PropertySize": 1000,
+    "PropertyType": "house",
+    "PropertyImages": [
+      "d19c6a59-566c-4946-925a-c506a636884b.jpg",
+      "43f2a27c-ca96-4c73-9c5d-aa4db53e47a9.jpg",
+      "ccd820cb-3968-483f-8303-2f6037b10622.jpg"
+    ],
+    "CoverImage": "65b4bf29-cbb8-4db9-bc3f-0c3db883bf39.jpg"
   }
 ]

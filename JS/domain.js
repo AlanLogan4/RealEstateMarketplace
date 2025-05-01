@@ -2,7 +2,7 @@ let houses = []
 
 export async function LoadHouses()
 {
-  const res = await fetch("/json/houses.json")
+  const res = await fetch("http://localhost:5139/api/properties/get")
   const data = await res.json();
     
   houses = data

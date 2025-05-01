@@ -1,26 +1,24 @@
 const dropZone = document.getElementById("drop-zone");
 const fileInput = document.getElementById("file-input");
-const preview = document.getElementById("preview");
+const previewContainer = document.getElementById("preview");
+
+let selectedFiles = [];
 
 dropZone.addEventListener("click", () => fileInput.click());
 
-["dragenter", "dragover"].forEach((event) =>
-  dropZone.addEventListener(event, (e) => {
-    e.preventDefault();
-    dropZone.classList.add("hover");
-  })
-);
+dropZone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropZone.style.border = "2px dashed #007bff";
+});
 
-["dragleave", "drop"].forEach((event) =>
-  dropZone.addEventListener(event, (e) => {
-    e.preventDefault();
-    dropZone.classList.remove("hover");
-  })
-);
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.border = "2px dashed #ccc";
+});
 
 dropZone.addEventListener("drop", (e) => {
-  const files = e.dataTransfer.files;
-  handleFiles(files);
+  e.preventDefault();
+  dropZone.style.border = "2px dashed #ccc";
+  handleFiles(e.dataTransfer.files);
 });
 
 fileInput.addEventListener("change", () => {
@@ -28,35 +26,49 @@ fileInput.addEventListener("change", () => {
 });
 
 function handleFiles(files) {
-  [...files].forEach((file) => {
-    if (!file.type.startsWith("image/")) return;
+  Array.from(files).forEach((file) => {
+    selectedFiles.push(file);
+
     const reader = new FileReader();
     reader.onload = (e) => {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+      wrapper.style.display = "inline-block";
+      wrapper.style.margin = "10px";
+
       const img = document.createElement("img");
       img.src = e.target.result;
-      preview.appendChild(img);
+      img.style.width = "150px";
+      img.style.borderRadius = "8px";
+
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "✖";
+      removeBtn.style.position = "absolute";
+      removeBtn.style.top = "0px";
+      removeBtn.style.right = "5px";
+      removeBtn.style.background = "rgba(0,0,0,0.6)";
+      removeBtn.style.color = "white";
+      removeBtn.style.border = "none";
+      removeBtn.style.borderRadius = "50%";
+      removeBtn.style.cursor = "pointer";
+      removeBtn.style.width = "50px";
+      removeBtn.style.margin = "0px";
+      removeBtn.onclick = () => {
+        selectedFiles = selectedFiles.filter((f) => f !== file);
+        wrapper.remove();
+      };
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(removeBtn);
+      previewContainer.appendChild(wrapper);
     };
+
     reader.readAsDataURL(file);
   });
+
+  fileInput.value = ""; // allow re-selection of same files
 }
 
-const coverImageInput = document.getElementById("coverImage");
-const coverPreview = document.getElementById("coverPreview");
-
-coverImageInput.addEventListener("change", function () {
-  const file = this.files[0];
-  if (file && file.type.startsWith("image/")) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      coverPreview.src = e.target.result;
-      coverPreview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  } else {
-    coverPreview.style.display = "none";
-    coverPreview.src = "";
-  }
-});
 
 // Form submission
 document.getElementById("propertyPost").addEventListener("submit", async function (e) {
@@ -88,10 +100,14 @@ document.getElementById("propertyPost").addEventListener("submit", async functio
   }
 
   // Add other dropped images
-  const additionalImages = document.getElementById("file-input").files;
-  for (const file of additionalImages) {
-    formData.append("images", file); // append each image as 'images'
+  if (selectedFiles.length > 3) {
+    alert("You can only upload up to 3 additional images.");
+    return;
   }
+  for (const file of selectedFiles) {
+    formData.append("images", file);
+  }
+  
 
   // Add the full property object as JSON string
   formData.append("propertyJson", JSON.stringify(property));

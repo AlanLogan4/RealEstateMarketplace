@@ -15,13 +15,13 @@ async function init() {
     if (!res.ok) throw new Error(`Failed to load ${JSON_PATH}`);
     allListings = await res.json();
 
-    wireToggles(); // All/Rent/Sell
-    wireSearch(); // Couple/Single/Family
-    wireLocation(); // locationInput
-    wirePrice(); // priceInput
-    wireAccount(); // accountButton
+    // wireToggles(); // All/Rent/Sell
+    // wireSearch(); // Couple/Single/Family
+    // wireLocation(); // locationInput
+    // wirePrice(); // priceInput
+    // wireAccount(); // accountButton
 
-    render(); // initial display
+    //render(); // initial display
   } catch (e) {
     console.error(e);
     document.querySelector(".property-grid").textContent =

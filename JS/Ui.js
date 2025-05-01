@@ -1,68 +1,93 @@
 import { LoadHouses, GetHouses } from "./domain.js";
 
-let selectedTab = "all"; // 'all' | 'rent' | 'sell'
-let filterLocation = ""; // e.g. "ca", "il"
+let selectedTab = "all";
+let filterLocation = "";
 let filterMinPrice = NaN;
 let filterMaxPrice = NaN;
-let filterTerrain = ""; // e.g. "small", "medium", "large"
+let filterTerrain = "";
 let filterYearMin = NaN;
 let filterYearMax = NaN;
-let filterRooms = ""; // e.g. "1", "2", "3+"
+let filterRooms = "";
 
 async function main() {
   await LoadHouses();
   const houses = GetHouses();
 
-  // build all cards
   const grid = document.querySelector(".property-grid");
   grid.replaceChildren();
   houses.forEach((h) => grid.appendChild(BuildCard(h)));
 
-  // wire up all the UI
   wireTabs();
   wireSearch();
   wireDropdowns();
   wireReset();
 
-  // initial filter pass
   applyFilters();
 }
 
 function BuildCard(house) {
   const card = document.createElement("div");
+  card.className = "property-card";
+  card.style.width = "300px";
+  card.style.borderRadius = "12px";
+  card.style.overflow = "hidden";
+  card.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+  card.style.backgroundColor = "#fff";
+  card.style.cursor = "pointer";
+  card.style.transition = "transform 0.2s";
+  card.addEventListener("mouseenter", () => card.style.transform = "scale(1.02)");
+  card.addEventListener("mouseleave", () => card.style.transform = "scale(1)");
+
+  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
+  card.dataset.location = house.address?.toLowerCase() || "";
+  card.dataset.price = house.price;
+  card.dataset.terrain = house.terrain || "";
+  card.dataset.year = house.year || "";
+  card.dataset.rooms = house.numberOfRooms || "";
+  card.dataset.name = house.houseName?.toLowerCase() || "";
+
   card.addEventListener("click", () => {
-    console.log("Card clicked:", house.houseName);
-    localStorage.setItem("selectedHouse", "1");
+    localStorage.setItem("selectedHouse", JSON.stringify(house.id));
     window.location.href = "/Pages/Houseinfo.html";
   });
-  card.className = "property-card";
 
-  // DATA ATTRIBUTES for filtering
-  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
-  card.dataset.name = house.houseName.toLowerCase();
-  card.dataset.location = house.houseLocation.toLowerCase();
-  // parse price into a number
-  card.dataset.price = parseInt(house.housePrice.replace(/[^0-9]/g, ""), 10);
-  // (If you add terrain/year/rooms fields to your JSON, set them here:)
-  // card.dataset.terrain = house.terrainSize;
-  // card.dataset.year    = house.yearBuilt;
-  // card.dataset.rooms   = house.roomCount;
-
-  // IMAGE
+  const imageUrl = `http://localhost:5139/images/${house.coverImage}`;
   const img = document.createElement("img");
-  img.src = house.HouseImage;
-  img.alt = house.houseName;
+  img.src = imageUrl;
+  img.alt = house.houseName || "Property";
+  img.style.width = "100%";
+  img.style.height = "200px";
+  img.style.objectFit = "cover";
 
-  // OVERLAY
-  const overlay = document.createElement("div");
-  overlay.className = "property-overlay";
-  overlay.innerHTML = `
-    <h3>${house.houseName}</h3>
-    <p class="location">📌${house.houseLocation}</p>
-    <p class="price">$${house.housePrice}</p>
-  `;
+  const info = document.createElement("div");
+  info.style.padding = "15px";
 
-  card.append(img, overlay);
+  const price = document.createElement("h3");
+  price.textContent = `$${house.price.toLocaleString()}`;
+  price.style.margin = "0";
+  price.style.color = "#0077cc";
+
+  const address = document.createElement("p");
+  address.textContent = house.address || house.houseLocation;
+  address.style.color = "#555";
+  address.style.margin = "5px 0 10px";
+
+  const details = document.createElement("div");
+  details.style.display = "flex";
+  details.style.gap = "10px";
+  details.style.fontSize = "0.95em";
+  details.style.color = "#333";
+
+  const bed = document.createElement("span");
+  bed.textContent = `🏯 ${house.numberOfRooms || 0}`;
+
+  const bath = document.createElement("span");
+  bath.textContent = `🛁 ${house.numberOfBathrooms || 0}`;
+
+  details.append(bed, bath);
+  info.append(price, address, details);
+  card.append(img, info);
+
   return card;
 }
 
@@ -72,16 +97,12 @@ function applyFilters() {
   document.querySelectorAll(".property-card").forEach((card) => {
     const matchTab = selectedTab === "all" || card.dataset.type === selectedTab;
     const matchSearch = !q || card.dataset.name.includes(q);
-    const matchLocation =
-      !filterLocation || card.dataset.location.includes(filterLocation);
-
+    const matchLocation = !filterLocation || card.dataset.location.includes(filterLocation);
     const priceNum = Number(card.dataset.price);
     const matchPrice =
       (isNaN(filterMinPrice) || priceNum >= filterMinPrice) &&
       (isNaN(filterMaxPrice) || priceNum <= filterMaxPrice);
-
-    const matchTerrain =
-      !filterTerrain || card.dataset.terrain === filterTerrain;
+    const matchTerrain = !filterTerrain || card.dataset.terrain === filterTerrain;
     const yearNum = Number(card.dataset.year);
     const matchYear =
       (isNaN(filterYearMin) || yearNum >= filterYearMin) &&
@@ -99,78 +120,13 @@ function applyFilters() {
 
     card.style.display = visible ? "block" : "none";
   });
-    const cardDiv = document.createElement("div");
+}
 
-    cardDiv.className = "property-card";
-
-    cardDiv.addEventListener("click", ()=> {
-
-      window.location.assign("Houseinfo.html");
-
-
-    })
-
-    if (house.isHouse == 0)
-    {
-      cardDiv.setAttribute("data-type", "rent");
-    }
-  
-    const imgHouse = document.createElement("img");
-    imgHouse.src = house.HouseImage; // example: "images/modern_home.jpg"
-    imgHouse.alt = "House";
-  
-    const propertyInfo = document.createElement("div");
-    propertyInfo.className = "property-info";
-  
-    const title = document.createElement("h3");
-    title.textContent = house.houseName;
-  
-    const location = document.createElement("p");
-    location.textContent = `📍 ${house.houseLocation}`;
-  
-    const divider = document.createElement("div");
-    divider.className = "divider";
-  
-    const price = document.createElement("p");
-    price.className = "price";
-    price.textContent = house.housePrice;
-  
-    const bookmark = document.createElement("span");
-    bookmark.className = "favorite";
-    bookmark.textContent = "❤️";
-  
-    // Assemble structure
-    propertyInfo.appendChild(title);
-    propertyInfo.appendChild(location);
-    propertyInfo.appendChild(divider);
-    propertyInfo.appendChild(price);
-    propertyInfo.appendChild(bookmark);
-  
-    cardDiv.appendChild(imgHouse);
-    cardDiv.appendChild(propertyInfo);
-  
-    return cardDiv;
-  }
-
-
-// Refresh Cards
-function RefreshCardRent()
-{
-    const cards = document.querySelectorAll(".property-card")
-
-    cards.forEach((card) =>{
-      if(card.dataset.type == "rent")
-      {
-        card.style.display = "block";
-        console.log("this card has rental")
-      }
-      else {
-        card.style.display = "none";
-      }
-      
-
-
-    })
+function RefreshCardRent() {
+  const cards = document.querySelectorAll(".property-card");
+  cards.forEach((card) => {
+    card.style.display = card.dataset.type === "rent" ? "block" : "none";
+  });
 }
 
 function wireTabs() {
@@ -198,40 +154,33 @@ function wireDropdowns() {
     const btn = dd.querySelector(".filter-button");
     const menu = dd.querySelector(".dropdown-menu");
 
-    // open/close menu
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      document
-        .querySelectorAll(".dropdown.open")
-        .forEach((other) => other !== dd && other.classList.remove("open"));
+      document.querySelectorAll(".dropdown.open").forEach((other) => {
+        if (other !== dd) other.classList.remove("open");
+      });
       dd.classList.toggle("open");
     });
 
-    // handle selection
     menu.querySelectorAll("p").forEach((item) =>
-      item.addEventListener("click", (e) => {
+      item.addEventListener("click", () => {
         dd.classList.remove("open");
         btn.textContent = item.textContent + " ⌄";
 
-        // Location filter
         if (item.dataset.location !== undefined) {
           filterLocation = item.dataset.location.toLowerCase();
         }
-        // Price Range filter
         if (item.dataset.min !== undefined) {
           filterMinPrice = parseInt(item.dataset.min, 10);
           filterMaxPrice = parseInt(item.dataset.max, 10);
         }
-        // Terrain Size filter
         if (item.dataset.terrain !== undefined) {
           filterTerrain = item.dataset.terrain;
         }
-        // Year Range filter
         if (item.dataset.yearMin !== undefined) {
           filterYearMin = parseInt(item.dataset.yearMin, 10);
           filterYearMax = parseInt(item.dataset.yearMax, 10);
         }
-        // Room Count filter
         if (item.dataset.rooms !== undefined) {
           filterRooms = item.dataset.rooms;
         }
@@ -241,12 +190,9 @@ function wireDropdowns() {
     );
   });
 
-  // close any open dropdown if clicking outside
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".dropdown")) {
-      document
-        .querySelectorAll(".dropdown.open")
-        .forEach((dd) => dd.classList.remove("open"));
+      document.querySelectorAll(".dropdown.open").forEach((dd) => dd.classList.remove("open"));
     }
   });
 }
@@ -256,7 +202,6 @@ function wireReset() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    // 1) Reset all state variables
     selectedTab = "all";
     filterLocation = "";
     filterMinPrice = NaN;
@@ -266,26 +211,21 @@ function wireReset() {
     filterYearMax = NaN;
     filterRooms = "";
 
-    // 2) Reset the tab UI
     document
       .querySelectorAll(".toggle-option")
       .forEach((b) => b.classList.toggle("active", b.dataset.mode === "all"));
 
-    // 3) Clear the search box
     const si = document.getElementById("searchInput");
     if (si) si.value = "";
 
-    // 4) Reset each dropdown’s label to its data-default
     document.querySelectorAll(".dropdown").forEach((dd) => {
       const button = dd.querySelector(".filter-button");
       const def = button.dataset.default;
       button.textContent = def + " ⌄";
     });
 
-    // 5) Re‐apply filters
     applyFilters();
   });
 }
 
-// kick it off
 document.addEventListener("DOMContentLoaded", main);

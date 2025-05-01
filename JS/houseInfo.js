@@ -25,7 +25,7 @@ async function main() {
   // Extract the ID from the URL using regex
   var id = localStorage.getItem("selectedHouse");
   console.log(id);
-  console.log("http://localhost:5139/api/properties/" + id);
+  console.log(`http://localhost:5139/api/properties/${id}`);
 
   // Use the ID to fetch data from the API
   const house = await GetHouseInfo(id);
@@ -40,45 +40,52 @@ function DisplayHouseInfo(house) {
   }
 
   const price = document.getElementById("price");
-  if (price) price.textContent = "PRICE: $"+ house.Price;
-  // Set the main image
-  // const mainImage = document.getElementById("mainImage");
-  // if (mainImage) mainImage.src = house.MainImage;
-
   // set price
+  if (price) price.textContent = "PRICE: $" + house.Price;
+  // Set the main image
+  const mainImage = document.getElementById("mainImage");
+  if (mainImage)
+    mainImage.src = `http://localhost:5139/images/${house.MainImage}`;
+
+  //Set the thumbnails
+  const thumbnails = document.querySelectorAll(".thumbnail");
+  if (thumbnails) {
+    for (let i = 0; i < thumbnails.length; i++) {
+      thumbnails[i].src = `http://localhost:5139/images/${house.Images[i]}`;
+    }
+  }
+  
 }
 async function GetHouseInfo(id) {
   // Use the ID to fetch data from the API
-  const response = await fetch("http://localhost:5139/api/properties/" + id
-  , {
+  const response = await fetch(`http://localhost:5139/api/properties/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       // Add any other headers you need here
     },
-  }
-  );
+  });
 
-  const property = await response.json()
+  const property = await response.json();
 
   console.log(property);
-      const house = {
-        Realtor: property.realtorID,
-        Location: property.address,
-        PropertySize: property.propertySize,
-        NumberofRooms: property.NumberOfRooms,
-        year: property.year,
-        NumberofBathrooms: property.numberOfBathrooms,
-        Price: property.price,
-        Description: property.description,
-        Propertytype: property.PropertyType,
-        
-        MainImage: property.coverImage,
-        Price: property.price,
-        Images: property.propertyImages,
-        // Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
-      };
-      return house;
+  const house = {
+    Realtor: property.realtorID,
+    Location: property.address,
+    PropertySize: property.propertySize,
+    NumberofRooms: property.NumberOfRooms,
+    year: property.year,
+    NumberofBathrooms: property.numberOfBathrooms,
+    Price: property.price,
+    Description: property.description,
+    Propertytype: property.PropertyType,
 
-    // .catch((error) => console.error("Error fetching data:", error));
+    MainImage: property.coverImage,
+    Price: property.price,
+    Images: property.propertyImages,
+    // Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
+  };
+  return house;
+
+  // .catch((error) => console.error("Error fetching data:", error));
 }

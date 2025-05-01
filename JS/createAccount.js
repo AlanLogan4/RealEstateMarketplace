@@ -60,8 +60,10 @@ else {
           window.location.href = "/Pages/SellerAccount.html";
         }
       } else {
-        errorMsg.textContent = "Login failed.";
+        
+        errorMsg.textContent = "User Already Exist.";
         errorMsg.style.display = "block";
+        errorMsg.style.color = "red";
       }
 
       // .then((res) => res.json())

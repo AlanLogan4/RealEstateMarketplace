@@ -1,4 +1,5 @@
 // buyer.js
+import { LoadHouses, GetHouses } from "./domain.js";
 
 const JSON_PATH = "../json/houses.json";
 let allListings = [];
@@ -13,12 +14,23 @@ async function init() {
     if (!res.ok) throw new Error(`Failed to load ${JSON_PATH}`);
     allListings = await res.json();
 
-    wireToggles(); // All/Rent/Sell
-    wireSearch(); // Couple/Single/Family
-    wireLocation(); // locationInput
-    wirePrice(); // priceInput
+    // wireToggles(); // All/Rent/Sell
+    // wireSearch(); // Couple/Single/Family
+    // wireLocation(); // locationInput
+    // wirePrice(); // priceInput
 
-    render(); // initial display
+    await LoadHouses();
+    const houses = GetHouses();
+    const user = JSON.parse(localStorage.getItem("token"));
+    const currentUserId = user?.id;
+    const grid = document.querySelector(".property-grid");
+    grid.replaceChildren();
+
+    houses
+      .filter((h) => h.realtorID === currentUserId)
+      .forEach((h) => grid.appendChild(BuildCard(h)));
+
+    //render(); // initial display
   } catch (e) {
     console.error(e);
     document.querySelector(".property-grid").textContent =
@@ -114,5 +126,77 @@ function wirePrice() {
   });
 }
 
-
 document.addEventListener("DOMContentLoaded", init);
+
+//build property card
+function BuildCard(house) {
+  const card = document.createElement("div");
+  card.className = "property-card";
+  card.style.width = "300px";
+  card.style.borderRadius = "12px";
+  card.style.overflow = "hidden";
+  card.style.boxShadow = "0 0 10px rgba(0,0,0,0.1)";
+  card.style.backgroundColor = "#fff";
+  card.style.cursor = "pointer";
+  card.style.transition = "transform 0.2s";
+  card.addEventListener(
+    "mouseenter",
+    () => (card.style.transform = "scale(1.02)")
+  );
+  card.addEventListener(
+    "mouseleave",
+    () => (card.style.transform = "scale(1)")
+  );
+
+  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
+  card.dataset.location = house.address?.toLowerCase() || "";
+  card.dataset.price = house.price;
+  card.dataset.terrain = house.terrain || "";
+  card.dataset.year = house.year || "";
+  card.dataset.rooms = house.numberOfRooms || "";
+  card.dataset.name = house.houseName?.toLowerCase() || "";
+
+  card.addEventListener("click", () => {
+    localStorage.setItem("selectedHouse", JSON.stringify(house.id));
+    window.location.href = "/Pages/Houseinfo.html";
+  });
+
+  const imageUrl = `http://localhost:5139/images/${house.coverImage}`;
+  const img = document.createElement("img");
+  img.src = imageUrl;
+  img.alt = house.houseName || "Property";
+  img.style.width = "100%";
+  img.style.height = "200px";
+  img.style.objectFit = "cover";
+
+  const info = document.createElement("div");
+  info.style.padding = "15px";
+
+  const price = document.createElement("h3");
+  price.textContent = `$${house.price.toLocaleString()}`;
+  price.style.margin = "0";
+  price.style.color = "#0077cc";
+
+  const address = document.createElement("p");
+  address.textContent = house.address || house.houseLocation;
+  address.style.color = "#555";
+  address.style.margin = "5px 0 10px";
+
+  const details = document.createElement("div");
+  details.style.display = "flex";
+  details.style.gap = "10px";
+  details.style.fontSize = "0.95em";
+  details.style.color = "#333";
+
+  const bed = document.createElement("span");
+  bed.textContent = `🏯 ${house.numberOfRooms || 0}`;
+
+  const bath = document.createElement("span");
+  bath.textContent = `🛁 ${house.numberOfBathrooms || 0}`;
+
+  details.append(bed, bath);
+  info.append(price, address, details);
+  card.append(img, info);
+
+  return card;
+}
