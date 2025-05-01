@@ -60,6 +60,8 @@ function DisplayHouseInfo(house) {
   const propertyType = document.getElementById("PropertyType");
   if (propertyType) propertyType.textContent = house.Propertytype;
 
+  const propertySize = document.getElementById("PropertySize");
+  if (propertySize) propertySize.textContent = house.PropertySize + " ft²";
   
 }
 async function GetHouseInfo(id) {
