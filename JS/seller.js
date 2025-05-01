@@ -18,6 +18,7 @@ async function init() {
     // wireSearch(); // Couple/Single/Family
     // wireLocation(); // locationInput
     // wirePrice(); // priceInput
+    LoadProfileInfo();
 
     await LoadHouses();
     const houses = GetHouses();
@@ -189,7 +190,7 @@ function BuildCard(house) {
   details.style.color = "#333";
 
   const bed = document.createElement("span");
-  bed.textContent = `🏯 ${house.numberOfRooms || 0}`;
+  bed.textContent = `🛏️ ${house.numberOfRooms || 0}`;
 
   const bath = document.createElement("span");
   bath.textContent = `🛁 ${house.numberOfBathrooms || 0}`;
@@ -199,4 +200,20 @@ function BuildCard(house) {
   card.append(img, info);
 
   return card;
+}
+
+
+document.getElementById("logout").addEventListener("click", function () {
+  localStorage.removeItem("token"); // Remove token from local storage
+  window.location.href = "/Pages/logIn.html"; // Redirect to login page
+});
+
+function LoadProfileInfo() {
+  const email = document.getElementById("userEmail");
+  const username = document.getElementById("userName");
+  const token = localStorage.getItem("token");
+  const currentUser = JSON.parse(token);
+  console.log(currentUser.username);
+  email.textContent = currentUser.email;
+  username.textContent = currentUser.username;
 }

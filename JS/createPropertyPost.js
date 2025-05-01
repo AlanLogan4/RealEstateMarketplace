@@ -104,6 +104,10 @@ document.getElementById("propertyPost").addEventListener("submit", async functio
     alert("You can only upload up to 3 additional images.");
     return;
   }
+  else if(selectedFiles.length < 1) {
+    alert("You must upload at least 1 additional image.");
+    return;
+  }
   for (const file of selectedFiles) {
     formData.append("images", file);
   }

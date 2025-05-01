@@ -38,7 +38,7 @@ function BuildCard(house) {
   card.addEventListener("mouseenter", () => card.style.transform = "scale(1.02)");
   card.addEventListener("mouseleave", () => card.style.transform = "scale(1)");
 
-  card.dataset.type = house.isHouse == 1 ? "rent" : "sell";
+  card.dataset.type = house.propertyType === "apartment" ? "rent" : "sell";
   card.dataset.location = house.address?.toLowerCase() || "";
   card.dataset.price = house.price;
   card.dataset.terrain = house.terrain || "";
@@ -79,7 +79,7 @@ function BuildCard(house) {
   details.style.color = "#333";
 
   const bed = document.createElement("span");
-  bed.textContent = `🏯 ${house.numberOfRooms || 0}`;
+  bed.textContent = `🛏️ ${house.numberOfRooms || 0}`;
 
   const bath = document.createElement("span");
   bath.textContent = `🛁 ${house.numberOfBathrooms || 0}`;

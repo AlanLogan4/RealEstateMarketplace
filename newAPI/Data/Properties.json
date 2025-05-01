@@ -37,7 +37,7 @@
   },
   {
     "Id": 3,
-    "Price": 10000.0,
+    "Price": 2000000.0,
     "Address": "120 S 1400 E Provo, UT",
     "Year": 2005,
     "RealtorID": 6,
@@ -52,5 +52,41 @@
       "ccd820cb-3968-483f-8303-2f6037b10622.jpg"
     ],
     "CoverImage": "65b4bf29-cbb8-4db9-bc3f-0c3db883bf39.jpg"
+  },
+  {
+    "Id": 4,
+    "Price": 2000.0,
+    "Address": "120 N 100 E Salt Lake City, UT",
+    "Year": 2019,
+    "RealtorID": 3,
+    "NumberOfRooms": 2,
+    "NumberOfBathrooms": 1,
+    "Description": "nice view",
+    "PropertySize": 200,
+    "PropertyType": "apartment",
+    "PropertyImages": [
+      "cd86803e-b3aa-4382-96a2-ec32ce6323d0.jpg",
+      "f827824f-d8c2-44c0-91c0-b1b0c6777887.jpg",
+      "9ef660aa-165f-4669-bf89-542e0cf6a031.jpg"
+    ],
+    "CoverImage": "57ac754d-cf9c-4179-a832-5df7de9e141e.jpg"
+  },
+  {
+    "Id": 5,
+    "Price": 1000.0,
+    "Address": "121 W 1400 E Provo, UT",
+    "Year": 2018,
+    "RealtorID": 3,
+    "NumberOfRooms": 2,
+    "NumberOfBathrooms": 1,
+    "Description": "nice view",
+    "PropertySize": 1000,
+    "PropertyType": "apartment",
+    "PropertyImages": [
+      "03faeaf7-89c1-48f2-81aa-fe899c39cadb.jpg",
+      "fced1a43-243c-4f4b-a932-350018cdfa9c.jpg",
+      "96ee2614-6607-4b72-b590-a6edfd8d8c4d.jpg"
+    ],
+    "CoverImage": "cc88175d-6a72-4071-a244-c2894f000ded.jpg"
   }
 ]

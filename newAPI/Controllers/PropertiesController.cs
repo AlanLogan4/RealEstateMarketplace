@@ -28,6 +28,14 @@ public class PropertiesController : ControllerBase
     public async Task<IActionResult> AddProperty([FromForm] string propertyJson, [FromForm] IFormFile coverImage, [FromForm] List<IFormFile> images)
     {
         var property = JsonConvert.DeserializeObject<Property>(propertyJson);
+        
+        bool exists = DataStore.Properties
+    .Any(p => p.Address.Trim().ToLower() == property.Address.Trim().ToLower());
+
+        if (exists)
+        {
+            return BadRequest(new { message = "A property with this address already exists." });
+        }
 
         property.Id = DataStore.Properties.Count + 1;
 

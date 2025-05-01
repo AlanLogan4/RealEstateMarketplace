@@ -7,7 +7,7 @@ let locationTerm = ""; // text filter for location
 let maxPrice = NaN;
 let searchTerm = ""; // numeric filter for price
 
-LoadEmail()
+LoadProfileInfo()
 
 async function init() {
   try {
@@ -130,9 +130,12 @@ document.getElementById("logout").addEventListener("click", function () {
   window.location.href = "/Pages/logIn.html"; // Redirect to login page
 });
 
-function LoadEmail() {
+function LoadProfileInfo() {
   const email = document.getElementById("userEmail");
+  const username = document.getElementById("userName");
   const token = localStorage.getItem("token");
   const currentUser = JSON.parse(token);
+  console.log(currentUser.username);
   email.textContent = currentUser.email;
+  username.textContent = currentUser.username;
 }

@@ -34,9 +34,11 @@ async function main() {
 }
 
 function DisplayHouseInfo(house) {
+  console.log(house)
   for (let key in house) {
     const el = document.getElementById(key);
     if (el) el.textContent = house[key];
+    console.log(key, house[key]);
   }
 
   const price = document.getElementById("price");
@@ -54,6 +56,10 @@ function DisplayHouseInfo(house) {
       thumbnails[i].src = `http://localhost:5139/images/${house.Images[i]}`;
     }
   }
+
+  const propertyType = document.getElementById("PropertyType");
+  if (propertyType) propertyType.textContent = house.Propertytype;
+
   
 }
 async function GetHouseInfo(id) {
@@ -73,12 +79,12 @@ async function GetHouseInfo(id) {
     Realtor: property.realtorID,
     Location: property.address,
     PropertySize: property.propertySize,
-    NumberofRooms: property.NumberOfRooms,
+    NumberofRooms: property.numberOfRooms,
     year: property.year,
     NumberofBathrooms: property.numberOfBathrooms,
     Price: property.price,
     Description: property.description,
-    Propertytype: property.PropertyType,
+    Propertytype: property.propertyType,
 
     MainImage: property.coverImage,
     Price: property.price,
