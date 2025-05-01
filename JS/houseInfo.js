@@ -30,14 +30,22 @@ async function main() {
   // Use the ID to fetch data from the API
   const house = await GetHouseInfo(id);
 
-  await DisplayHouseInfo(house);
+  DisplayHouseInfo(house);
 }
 
 function DisplayHouseInfo(house) {
   for (let key in house) {
     const el = document.getElementById(key);
-    if (el) el.textContent = data[key];
+    if (el) el.textContent = house[key];
   }
+
+  const price = document.getElementById("price");
+  if (price) price.textContent = "PRICE: $"+ house.Price;
+  // Set the main image
+  // const mainImage = document.getElementById("mainImage");
+  // if (mainImage) mainImage.src = house.MainImage;
+
+  // set price
 }
 async function GetHouseInfo(id) {
   // Use the ID to fetch data from the API
@@ -54,24 +62,23 @@ async function GetHouseInfo(id) {
   const property = await response.json()
 
   console.log(property);
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   // Assuming the API returns an object with the house data
-    //   const house = {
-    //     Realtor: data.RealtorID,
-    //     Location: data.Address,
-    //     PropertySize: data.PropertySize,
-    //     NumberofRooms: data.NumberOfRooms,
-    //     year: data.Year,
-    //     NumberofBathrooms: data.NumberOfBathrooms,
-    //     Price: data.price,
-    //     Description: data.Description,
-    //     MainImage: data.CoverImage,
-    //     Propertytype: data.PropertyType,
-    //     // Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
-    //   };
-      // return house;
-    // })
+      const house = {
+        Realtor: property.realtorID,
+        Location: property.address,
+        PropertySize: property.propertySize,
+        NumberofRooms: property.NumberOfRooms,
+        year: property.year,
+        NumberofBathrooms: property.numberOfBathrooms,
+        Price: property.price,
+        Description: property.description,
+        Propertytype: property.PropertyType,
+        
+        MainImage: property.coverImage,
+        Price: property.price,
+        Images: property.propertyImages,
+        // Images: PropertyImages.map(image => image.url), // Assuming images is an array of objects with a url property
+      };
+      return house;
 
     // .catch((error) => console.error("Error fetching data:", error));
 }
